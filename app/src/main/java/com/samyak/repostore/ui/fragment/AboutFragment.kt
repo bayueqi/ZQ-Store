@@ -52,6 +52,7 @@ class AboutFragment : Fragment() {
 
         // 作者信息
         binding.tvAuthorName.text = "八月琪"
+        android.util.Log.d("AboutFragment", "Author name set to: " + binding.tvAuthorName.text)
         binding.btnAuthorGithub.setOnClickListener {
             openUrl("https://github.com/bayueqi")
         }
