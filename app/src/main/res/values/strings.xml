@@ -18,7 +18,7 @@
     <string name="voice_search">语音搜索</string>
     <string name="filter">筛选</string>
     <string name="sort_by">排序方式</string>
-    <string name="updated">已更新</string>
+    <string name="updated">更新时间</string>
     <string name="has_apk">有APK</string>
     <string name="reset">重置</string>
     <string name="results_count">%d 个结果</string>
