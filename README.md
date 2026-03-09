@@ -5,7 +5,6 @@
 <h1 align="center">RepoStore</h1>
 
 <p align="center">
-  <a href="https://opensource.org/licenses/MIT"><img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg"/></a>
   <a href="https://kotlinlang.org"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-1.9-7F52FF.svg?logo=kotlin&logoColor=white"/></a>
   <a href="#"><img alt="Platform" src="https://img.shields.io/badge/Platform-Android-brightgreen?logo=android"/></a>
   <a href="https://github.com/samyak2403/RepoStore/releases"><img alt="Release" src="https://img.shields.io/github/v/release/samyak2403/RepoStore?label=Release&logo=github"/></a>
@@ -94,10 +93,7 @@ RepoStore is a native Android app that turns GitHub releases into a clean, Play 
   - Increases API rate limit from 60 to 5,000 requests/hour.
   - View developer profiles and repositories.
 
-- **Support Developer**
-  - UPI payment integration with QR code.
-  - Detects installed UPI apps (GPay, PhonePe, Paytm, etc.).
-  - One-tap payment support.
+
 
 ---
 
@@ -201,16 +197,7 @@ If your repo meets these conditions, RepoStore can find it through search and sh
 
 ---
 
-## 💖 Support This Project
 
-RepoStore is free and always will be. If it's helped you, consider:
-
-- ⭐ **Star** this repository
-- 🐛 **Report** bugs and issues
-- 💡 **Suggest** new features
-- 💳 **Donate** via UPI (in-app)
-
-Your support helps maintain the app and build new features!
 
 ---
 
@@ -240,45 +227,11 @@ By using RepoStore, you understand and agree that you install and run any downlo
 
 ---
 
-## 👨‍💻 Author
 
-<div align="center">
-
-**Samyak Kamble**
-
-[![GitHub](https://img.shields.io/badge/GitHub-samyak2403-181717?style=for-the-badge&logo=github)](https://github.com/samyak2403)
-
-</div>
 
 ---
 
-## 📄 License
 
-RepoStore is released under the **MIT License**.
-
-```
-MIT License
-
-Copyright (c) 2026 Samyak Kamble
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
 
 ---
 
