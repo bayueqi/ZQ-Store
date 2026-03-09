@@ -174,7 +174,7 @@
     <string name="added_to_favorites">已添加到收藏</string>
     <string name="removed_from_favorites">已从收藏中移除</string>
     <string name="favorite_apps">收藏的应用</string>
-    <string name="manage_apps">管理应用</string>
+    <string name="manage_apps">我的应用</string>
     <string name="no_installed_apps">未安装应用</string>
     <string name="no_installed_apps_hint">您从收藏中安装的应用将显示在这里</string>
     

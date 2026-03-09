@@ -51,13 +51,13 @@ class AboutFragment : Fragment() {
         binding.tvAppVersion.text = getString(R.string.version_format, versionName)
 
         // 作者信息
-        binding.tvAuthorName.text = "作者: bayueqi"
+        binding.tvAuthorName.text = "八月琪"
         binding.btnAuthorGithub.setOnClickListener {
             openUrl("https://github.com/bayueqi")
         }
 
         // 仓库信息
-        binding.tvRepoName.text = "仓库: ZQ-Store"
+        binding.tvRepoName.text = "ZQ-Store"
         binding.btnRepoGithub.setOnClickListener {
             openUrl("https://github.com/bayueqi/ZQ-Store")
         }
