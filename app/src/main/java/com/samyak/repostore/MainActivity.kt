@@ -7,8 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.samyak.repostore.databinding.ActivityMainBinding
 import com.samyak.repostore.ui.fragment.HomeFragment
-import com.samyak.repostore.ui.fragment.SearchFragment
 import com.samyak.repostore.ui.fragment.SettingsFragment
+import com.samyak.repostore.ui.fragment.AboutFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,12 +41,12 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(HomeFragment.newInstance())
                     true
                 }
-                R.id.nav_search -> {
-                    loadFragment(SearchFragment.newInstance())
-                    true
-                }
                 R.id.nav_settings -> {
                     loadFragment(SettingsFragment.newInstance())
+                    true
+                }
+                R.id.nav_about -> {
+                    loadFragment(AboutFragment.newInstance())
                     true
                 }
                 else -> false
