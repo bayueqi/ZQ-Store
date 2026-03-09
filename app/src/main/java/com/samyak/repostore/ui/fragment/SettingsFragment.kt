@@ -18,9 +18,9 @@ import com.samyak.repostore.data.auth.GitHubAuth
 import com.samyak.repostore.databinding.FragmentSettingsBinding
 import com.samyak.repostore.ui.activity.AboutActivity
 import com.samyak.repostore.ui.activity.AppDeveloperActivity
-import com.samyak.repostore.ui.activity.DonateActivity
+
 import com.samyak.repostore.ui.activity.GitHubSignInActivity
-import com.samyak.repostore.ui.activity.LicensesActivity
+
 import com.samyak.repostore.ui.activity.FavoriteActivity
 import com.samyak.repostore.ui.activity.MyAppsActivity
 import com.samyak.repostore.ui.activity.DownloadSettingsActivity
@@ -48,8 +48,6 @@ class SettingsFragment : Fragment() {
         setupDownloadSettingsSection()
         setupAboutSection()
         setupDeveloperSection()
-        setupDonateSection()
-        setupLicensesSection()
         setupSourceCodeSection()
     }
 
@@ -125,17 +123,7 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    private fun setupDonateSection() {
-        binding.donateCard.setOnClickListener {
-            startActivity(Intent(requireContext(), DonateActivity::class.java))
-        }
-    }
 
-    private fun setupLicensesSection() {
-        binding.licensesCard.setOnClickListener {
-            startActivity(Intent(requireContext(), LicensesActivity::class.java))
-        }
-    }
 
     private fun setupSourceCodeSection() {
         binding.sourceCodeCard.setOnClickListener {

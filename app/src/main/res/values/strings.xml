@@ -156,25 +156,7 @@
     <string name="rate_limit_exceeded_message">您已超过GitHub API速率限制（每小时60次请求）。\n\n使用GitHub登录可免费将您的限制提高到每小时5,000次请求！</string>
     <string name="rate_limit_exceeded_signed_in">您已超过认证速率限制（每小时5,000次请求）。请等待几分钟后再试。</string>
     
-    <!-- 捐赠 -->
-    <string name="donate">捐赠</string>
-    <string name="support_developer">支持开发者</string>
-    <string name="donate_description">如果您觉得此应用有用，请考虑通过小额捐赠支持开发。</string>
-    <string name="scan_qr_code">扫描二维码支付</string>
-    <string name="upi_qr_code">UPI二维码</string>
-    <string name="upi_id">UPI ID</string>
-    <string name="copy">复制</string>
-    <string name="upi_id_copied">UPI ID已复制到剪贴板</string>
-    <string name="thank_you_message">感谢您的支持！ ❤️</string>
-    <string name="pay_with_upi_app">使用UPI应用支付</string>
-    <string name="no_upi_apps_found">您的设备上未找到UPI支付应用</string>
-    <string name="payment_app_icon">支付应用图标</string>
-    <string name="pay">支付</string>
-    <string name="cannot_open_payment_app">无法打开支付应用</string>
-    
-    <!-- 开源许可证 -->
-    <string name="open_source_licenses">开源许可证</string>
-    <string name="source_code">源代码</string>
+
     
     <!-- 动态内容格式字符串 -->
     <string name="download_progress">%s (%s/%s)</string>
