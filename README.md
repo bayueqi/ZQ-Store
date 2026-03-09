@@ -1,244 +1,84 @@
-<div align="center">
-  <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" width="200" alt="Project logo"/>
-</div>
+# ZQ Store
 
-<h1 align="center">RepoStore</h1>
+一款基于GitHub的开源应用商店，帮助用户发现和下载各种平台的开源应用。
 
-<p align="center">
-  <a href="https://kotlinlang.org"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-1.9-7F52FF.svg?logo=kotlin&logoColor=white"/></a>
-  <a href="#"><img alt="Platform" src="https://img.shields.io/badge/Platform-Android-brightgreen?logo=android"/></a>
-  <a href="https://github.com/samyak2403/RepoStore/releases"><img alt="Release" src="https://img.shields.io/github/v/release/samyak2403/RepoStore?label=Release&logo=github"/></a>
-  <a href="https://github.com/samyak2403/RepoStore/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/samyak2403/RepoStore?style=social"/></a>
-  <img alt="Material 3" src="https://img.shields.io/badge/Material-3-4285F4?logo=material-design&logoColor=white"/>
-  <img alt="MVVM" src="https://img.shields.io/badge/Architecture-MVVM-orange"/>
-  <a href="https://www.codefactor.io/repository/github/samyak2403/repostore"><img src="https://www.codefactor.io/repository/github/samyak2403/repostore/badge" alt="CodeFactor" /></a>
-</p>
+## 功能特性
 
-<p align="center">
-  RepoStore is a GitHub-powered Android app store that discovers repositories shipping real installable APKs and lets you install, track, and update them from one place.
-</p>
+- **多平台支持**：支持Windows、macOS、Linux、Android、iOS等平台的应用搜索和下载
+- **智能分类**：按推荐、游戏、社交、视频、音乐、动漫等分类浏览应用
+- **高级搜索**：支持关键词搜索和平台筛选
+- **应用详情**：查看应用的详细信息、版本历史和下载统计
+- **安装管理**：支持直接安装Android应用（APK）
+- **收藏功能**：收藏喜欢的应用以便后续查看
+- **更新提醒**：显示应用的更新时间和版本信息
 
-<p align="center">
-  <img src="screenshots/banner/1.png" />
-</p>
+## 支持的文件格式
 
----
+- **Android**：APK、AAB
+- **Windows**：EXE、MSI
+- **macOS**：DMG、PKG
+- **Linux**：DEB、RPM、AppImage
+- **iOS**：IPA
 
-### All screenshots can be found in [screenshots/](screenshots/) folder.
+## 如何使用
 
-<img src="screenshots/preview.gif" align="right" width="320"/>
+1. **浏览应用**：在首页查看推荐应用，或通过分类浏览不同类型的应用
+2. **搜索应用**：使用顶部搜索框输入关键词搜索应用
+3. **筛选平台**：点击平台筛选按钮选择特定平台的应用
+4. **查看详情**：点击应用卡片查看详细信息
+5. **下载应用**：点击下载按钮下载应用，Android应用支持直接安装
+6. **收藏应用**：点击收藏按钮将应用添加到收藏列表
+7. **管理设置**：在设置页面调整应用行为和查看收藏的应用
 
-## ✨ What is RepoStore?
+## 技术栈
 
-RepoStore is a native Android app that turns GitHub releases into a clean, Play Store style experience:
+- **开发语言**：Kotlin
+- **架构**：MVVM
+- **网络请求**：Retrofit + OkHttp
+- **UI框架**：Jetpack Compose
+- **数据存储**：Room Database
+- **GitHub API**：用于搜索仓库和获取releases
 
-- Only shows repositories that actually provide installable APK assets.
-- Detects installed apps and shows update availability.
-- Always installs from the latest published release with changelog.
-- Presents a polished details screen with stats, README, and developer info.
+## 构建与安装
 
----
+### 前置条件
 
-## 🔃 Download
+- Android Studio Arctic Fox或更高版本
+- JDK 11或更高版本
+- Android SDK API 26或更高版本
 
-<a href="https://github.com/samyak2403/RepoStore/releases">
-  <img src="https://img.shields.io/badge/Download-APK-success?style=for-the-badge&logo=android" height="60"/>
-</a>
+### 构建步骤
 
-<a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22com.samyak.repostore%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fsamyak2403%2FRepoStore%22%2C%22author%22%3A%22samyak2403%22%2C%22name%22%3A%22RepoStore%22%2C%22preferredApkIndex%22%3A0%2C%22additionalSettings%22%3A%22%7B%5C%22includePrereleases%5C%22%3Afalse%2C%5C%22fallbackToOlderReleases%5C%22%3Atrue%2C%5C%22filterReleaseTitlesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22filterReleaseNotesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22verifyLatestTag%5C%22%3Afalse%2C%5C%22dontSortReleasesList%5C%22%3Afalse%2C%5C%22useLatestAssetDateAsReleaseDate%5C%22%3Afalse%2C%5C%22releaseTitleAsVersion%5C%22%3Afalse%2C%5C%22trackOnly%5C%22%3Afalse%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22matchGroupToUse%5C%22%3A%5C%22%5C%22%2C%5C%22versionDetection%5C%22%3Atrue%2C%5C%22releaseDateAsVersion%5C%22%3Afalse%2C%5C%22useVersionCodeAsOSVersion%5C%22%3Afalse%2C%5C%22apkFilterRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22invertAPKFilter%5C%22%3Afalse%2C%5C%22autoApkFilterByArch%5C%22%3Atrue%2C%5C%22appName%5C%22%3A%5C%22%5C%22%2C%5C%22shizukuPretendToBeGooglePlay%5C%22%3Afalse%2C%5C%22allowInsecure%5C%22%3Afalse%2C%5C%22exemptFromBackgroundUpdates%5C%22%3Afalse%2C%5C%22skipUpdateNotifications%5C%22%3Afalse%2C%5C%22about%5C%22%3A%5C%22GitHub-powered%20app%20store%5C%22%7D%22%7D">
-  <img src="screenshots/obtainium_badge.webp" height="60"/>
-</a>
+1. 克隆仓库：
+   ```bash
+   git clone https://github.com/bayueqi/zq-store.git
+   ```
 
-<a href="https://apt.izzysoft.de/packages/com.samyak.repostore">
-  <img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroidButtonGreyBorder_nofont.png" height="60" alt="Get it at IzzyOnDroid"/>
-</a>
+2. 在Android Studio中打开项目
 
-<a href="https://www.openapk.net/repostore/com.samyak.repostore/">
-  <img src="https://camo.githubusercontent.com/cd56895b28a73ebd781a65b4f567add5419e45797a5cf1485ce408e851c2318e/68747470733a2f2f7777772e6f70656e61706b2e6e65742f696d616765732f6f70656e61706b2d62616467652e706e67" height="90" alt="Get it on OpenAPK"/>
-</a>
+3. 构建APK：
+   ```bash
+   ./gradlew assembleDebug
+   ```
 
----
+4. 安装到设备：
+   ```bash
+   ./gradlew installDebug
+   ```
 
-## 🚀 Features
+## 贡献指南
 
-- **Smart Discovery**
-  - Home sections for "Trending", "Recently Updated", and "Featured" projects.
-  - Only repos with valid APK assets are shown.
-  - Category-based filtering for apps.
+欢迎贡献代码、报告bug或提出新功能建议！
 
-- **Latest-Release Installs**
-  - Fetches `/releases/latest` for each repo.
-  - Shows only assets from the latest release.
-  - Single "Install" action with download progress.
+1. Fork本仓库
+2. 创建功能分支
+3. 提交更改
+4. 推送到分支
+5. 创建Pull Request
 
-- **Rich Details Screen**
-  - App name, version, "Install" button.
-  - Stars, forks, language stats.
-  - Rendered README content ("About this app").
-  - Latest release notes with markdown formatting.
-  - Screenshot gallery with fullscreen viewer.
+## 关于
 
-- **Install & Update Tracking**
-  - Opens APK downloads with the package installer.
-  - Tracks installations and shows "Open" for installed apps.
-  - Detects when updates are available.
+- **作者**：八月琪
+- **仓库**：[https://github.com/bayueqi/zq-store](https://github.com/bayueqi/zq-store)
+- **版本**：1.0.1
 
-- **Appearance & Theming**
-  - Material 3 design with Material You support.
-  - Dark mode with system theme support.
-  - Clean, Play Store inspired UI.
-
-- **GitHub Integration**
-  - Optional GitHub sign-in via OAuth device flow.
-  - Increases API rate limit from 60 to 5,000 requests/hour.
-  - View developer profiles and repositories.
-
-
-
----
-
-## ❓ How does an app appear in RepoStore?
-
-RepoStore does not use any private indexing or manual curation. Your project can appear automatically if it follows these conditions:
-
-1. **Public repository on GitHub**
-   - Visibility must be `public`.
-
-2. **At least one published release**
-   - Created via GitHub Releases (not only tags).
-   - The latest release must not be a draft or prerelease.
-
-3. **APK assets in the latest release**
-   - The latest release must contain at least one `.apk` file.
-   - GitHub's auto-generated source artifacts are ignored.
-
-4. **Discoverable by search / topics**
-   - Repositories are fetched via the public GitHub Search API.
-   - Topics like `android`, `mobile`, `apk` help ranking.
-   - Having stars makes it more likely to appear in sections.
-
-If your repo meets these conditions, RepoStore can find it through search and show it automatically—no manual submission required.
-
----
-
-## 🧭 How RepoStore Works
-
-1. **Search**
-   - Uses GitHub's `/search/repositories` endpoint with Android-focused queries.
-   - Applies scoring based on topics, language, and description.
-   - Filters out archived repos.
-
-2. **Release + Asset Check**
-   - For candidate repos, calls `/repos/{owner}/{repo}/releases/latest`.
-   - Checks the `assets` array for `.apk` files.
-   - If no APK is found, the repo is excluded from results.
-
-3. **Details Screen**
-   - Repository info: name, owner, description, stars, forks.
-   - Latest release: tag, published date, changelog, assets.
-   - README: loaded and rendered as "About this app".
-   - Screenshots: detected from repository contents.
-
-4. **Install Flow**
-   - When user taps "Install":
-     - Downloads the APK with progress indicator.
-     - Delegates to the system package installer.
-     - Records installation in local database.
-     - Shows "Open" button for installed apps.
-
----
-
-## ⚙️ Tech Stack
-
-- **Minimum Android SDK: 26 (Android 8.0)**
-
-- **Language & Platform**
-  - [Kotlin](https://kotlinlang.org/) with Coroutines & Flow
-  - Android Native with ViewBinding
-
-- **Architecture**
-  - MVVM (Model-View-ViewModel)
-  - Repository Pattern
-  - Single Activity with Fragments
-
-- **Networking & Data**
-  - [Retrofit](https://square.github.io/retrofit/) + OkHttp
-  - [Gson](https://github.com/google/gson) for JSON parsing
-  - [Room](https://developer.android.com/jetpack/androidx/releases/room) for local database
-
-- **UI & Design**
-  - [Material 3](https://m3.material.io/) Components
-  - [Glide](https://github.com/bumptech/glide) for image loading
-  - [Markwon](https://github.com/noties/Markwon) for README rendering
-  - [PhotoView](https://github.com/GetStream/photoview-android) for zoomable images
-
-- **Auth & Security**
-  - GitHub OAuth (Device Code flow)
-  - SharedPreferences for token storage
-
----
-
-## ✅ Why Use RepoStore?
-
-- **No more hunting through GitHub releases**
-  See only repos that actually ship APKs.
-
-- **Knows what you installed**
-  Tracks apps installed via RepoStore and shows when updates are available.
-
-- **Always the latest release**
-  Installs are guaranteed to come from the latest published release.
-
-- **Play Store-like experience**
-  Familiar UI with categories, search, and app details.
-
-- **Open source & extensible**
-  Written in Kotlin with clean architecture—easy to fork and extend.
-
----
-
-
-
----
-
-## 🔑 Configuration
-
-### GitHub OAuth (Optional)
-
-To enable GitHub sign-in for increased API limits:
-
-1. Create a GitHub OAuth app at **GitHub → Settings → Developer settings → OAuth Apps**.
-2. Copy the **Client ID** from the OAuth app.
-3. Update in `GitHubAuth.kt`:
-
-```kotlin
-private const val CLIENT_ID = "your_client_id_here"
-```
-
----
-
-## ⚠️ Disclaimer
-
-RepoStore only helps you discover and download release assets that are already published on GitHub by third-party developers.
-
-The contents, safety, and behavior of those downloads are entirely the responsibility of their respective authors and distributors, not this project.
-
-By using RepoStore, you understand and agree that you install and run any downloaded software at your own risk. This project does not review, validate, or guarantee that any APK is safe, free of malware, or fit for any particular purpose.
-
----
-
-
-
----
-
-
-
----
-
-<div align="center">
-
-**Made with ❤️ in India**
-
-![Visitors](https://visitor-badge.laobi.icu/badge?page_id=samyak2403.RepoStore)
-
-</div>
