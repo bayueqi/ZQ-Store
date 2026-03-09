@@ -205,10 +205,7 @@ class SearchViewModel(private val repository: GitHubRepository) : ViewModel() {
         searchWithFilters(newFilters)
     }
 
-    fun toggleHasReleases(hasReleases: Boolean) {
-        val newFilters = _filters.value.copy(hasReleases = hasReleases)
-        searchWithFilters(newFilters)
-    }
+
 
     fun updatePlatformsFilter(platforms: List<Platform>) {
         val newFilters = _filters.value.copy(platforms = platforms)
