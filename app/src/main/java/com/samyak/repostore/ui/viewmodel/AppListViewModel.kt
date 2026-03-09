@@ -43,7 +43,6 @@ class AppListViewModel(
 
     private fun getQuery(): String {
         return when {
-            category == AppCategory.GAMES -> "android game"
             category != null -> category.query
             else -> when (ListType.valueOf(listType)) {
                 ListType.FEATURED -> "android app"
