@@ -85,7 +85,6 @@ enum class AppCategory(val displayName: String, val queries: List<String>) {
     ALL("All", listOf("android app", "topic:android")),
     TOOLS("Tools", listOf("android tool", "android utility", "topic:android-tool")),
     PRODUCTIVITY("Productivity", listOf("android productivity", "android notes", "android todo", "topic:android-productivity")),
-    GAMES("Games", listOf("android game", "topic:android-game", "mobile game android")),
     OPEN_SOURCE("Open Source", listOf("android foss", "android open-source", "topic:foss topic:android"));
 
     // For backward compatibility

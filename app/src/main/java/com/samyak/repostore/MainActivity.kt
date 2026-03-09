@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.samyak.repostore.databinding.ActivityMainBinding
-import com.samyak.repostore.ui.fragment.GameFragment
 import com.samyak.repostore.ui.fragment.HomeFragment
 import com.samyak.repostore.ui.fragment.SearchFragment
 import com.samyak.repostore.ui.fragment.SettingsFragment
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         setupBottomNavigation()
 
         if (savedInstanceState == null) {
-            loadFragment(GameFragment.newInstance())
+            loadFragment(HomeFragment.newInstance())
         }
     }
 
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    loadFragment(GameFragment.newInstance())
+                    loadFragment(HomeFragment.newInstance())
                     true
                 }
                 R.id.nav_apps -> {

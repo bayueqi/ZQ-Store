@@ -41,11 +41,7 @@
     <string name="recently_updated">最近更新</string>
     <string name="see_more">查看更多</string>
 
-    <!-- 游戏部分 -->
-    <string name="featured_games">精选游戏</string>
-    <string name="popular_games">流行游戏</string>
-    <string name="new_games">新游戏</string>
-    <string name="no_games_found">未找到游戏</string>
+
 
     <!-- 应用详情 -->
     <string name="app_icon">应用图标</string>
