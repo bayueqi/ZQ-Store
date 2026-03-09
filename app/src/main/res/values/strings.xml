@@ -12,7 +12,7 @@
     <!-- 搜索 -->
     <string name="search_apps_games">搜索应用和游戏</string>
     <string name="search_github_repos">搜索GitHub仓库…</string>
-    <string name="search_hint">在GitHub上搜索Android应用</string>
+    <string name="search_hint">在GitHub上搜索应用</string>
     <string name="no_results">未找到结果</string>
     <string name="clear">清除</string>
     <string name="voice_search">语音搜索</string>
@@ -37,7 +37,7 @@
 
     <!-- 首页部分 -->
     <string name="recommended_for_you">为您推荐</string>
-    <string name="top_free_apps">热门免费应用</string>
+    <string name="top_free_apps">热门应用</string>
     <string name="recently_updated">最近更新</string>
     <string name="see_more">查看更多</string>
 

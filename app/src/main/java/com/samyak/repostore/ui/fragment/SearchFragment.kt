@@ -171,7 +171,7 @@ class SearchFragment : Fragment() {
         }
 
         // Platforms chip
-        binding.chipHasApk.text = "Platforms"
+        binding.chipHasApk.text = "平台"
         binding.chipHasApk.setOnClickListener {
             showPlatformsDialog()
         }
@@ -269,7 +269,7 @@ class SearchFragment : Fragment() {
         }
 
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Platforms")
+            .setTitle("平台")
             .setMultiChoiceItems(platformNames, checkedItems) { _, which, isChecked ->
                 checkedItems[which] = isChecked
             }
@@ -289,11 +289,11 @@ class SearchFragment : Fragment() {
 
     private fun updatePlatformsChip(platforms: List<Platform>) {
         binding.chipHasApk.text = if (platforms.isEmpty()) {
-            "Platforms"
+            "平台"
         } else if (platforms.size == 1) {
             platforms[0].displayName
         } else {
-            "${platforms.size} Platforms"
+            "${platforms.size} 个平台"
         }
         binding.chipHasApk.isChecked = platforms.isNotEmpty()
     }
