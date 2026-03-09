@@ -222,8 +222,8 @@ class GitHubRepository(private val repoDao: RepoDao) {
             
             Result.success(SearchResult(
                 items = rankedItems,
-                totalCount = response.totalCount,
-                hasNextPage = response.items.size >= 40,
+                totalCount = rankedItems.size,
+                hasNextPage = rankedItems.size == 40,
                 query = query,
                 filters = filters
             ))
