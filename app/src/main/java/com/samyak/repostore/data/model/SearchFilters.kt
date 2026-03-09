@@ -1,13 +1,30 @@
 package com.samyak.repostore.data.model
 
 /**
+ * Platform options for filtering apps
+ */
+enum class Platform(val displayName: String, val extensions: List<String>) {
+    WINDOWS("Windows", listOf(".exe", ".msi", ".msix", ".appx")),
+    MACOS("macOS", listOf(".dmg", ".pkg", ".app")),
+    LINUX("Linux", listOf(".deb", ".rpm", ".snap", ".flatpak", ".AppImage")),
+    ANDROID("Android", listOf(".apk", ".aab")),
+    IOS("iOS", listOf(".ipa"));
+    
+    companion object {
+        fun fromDisplayName(name: String): Platform? {
+            return values().find { it.displayName == name }
+        }
+    }
+}
+
+/**
  * Advanced search filters for GitHub repository search
  */
 data class SearchFilters(
     val sortBy: SortOption = SortOption.BEST_MATCH,
     val language: String? = null,
     val minStars: Int? = null,
-    val hasReleases: Boolean = false, // Default: Show all repos (APK filter is opt-in)
+    val platforms: List<Platform> = emptyList(), // Empty by default - show all platforms
     val includeArchived: Boolean = false,
     val updatedWithin: UpdatedWithin? = null,
     val topics: List<String> = emptyList(), // Empty by default - searches ALL repos

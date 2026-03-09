@@ -50,13 +50,26 @@ class GitHubRepository(private val repoDao: RepoDao) {
     )
 
     /**
-     * Check if a release has installable assets for any platform
+     * Check if a release has installable assets for specified platforms
      */
-    private fun hasInstallableAsset(release: GitHubRelease?): Boolean {
+    private fun hasInstallableAsset(release: GitHubRelease?, platforms: List<com.samyak.repostore.data.model.Platform> = emptyList()): Boolean {
         if (release == null) return false
+        
         return release.assets.any { asset ->
-            installableExtensions.any { ext ->
-                asset.name.lowercase().endsWith(ext)
+            val assetName = asset.name.lowercase()
+            
+            if (platforms.isEmpty()) {
+                // No platform filter, check all installable extensions
+                installableExtensions.any { ext ->
+                    assetName.endsWith(ext)
+                }
+            } else {
+                // Check if asset matches any selected platform's extensions
+                platforms.any { platform ->
+                    platform.extensions.any { ext ->
+                        assetName.endsWith(ext)
+                    }
+                }
             }
         }
     }
@@ -64,15 +77,19 @@ class GitHubRepository(private val repoDao: RepoDao) {
     /**
      * Check if repo has installable assets in latest release
      */
-    private suspend fun repoHasInstallableAssets(owner: String, repoName: String): Boolean {
-        val cacheKey = "$owner/$repoName"
+    private suspend fun repoHasInstallableAssets(owner: String, repoName: String, platforms: List<com.samyak.repostore.data.model.Platform> = emptyList()): Boolean {
+        val cacheKey = if (platforms.isEmpty()) {
+            "$owner/$repoName"
+        } else {
+            "$owner/$repoName/${platforms.joinToString(",") { it.name }}"
+        }
         
         // Check cache first
         installableReposCache[cacheKey]?.let { return it }
         
         return try {
             val release = api.getLatestRelease(owner, repoName)
-            val hasInstallable = hasInstallableAsset(release)
+            val hasInstallable = hasInstallableAsset(release, platforms)
             installableReposCache[cacheKey] = hasInstallable
             if (hasInstallable) {
                 releaseCache[cacheKey] = release
@@ -87,11 +104,11 @@ class GitHubRepository(private val repoDao: RepoDao) {
     /**
      * Filter repos to only include those with installable assets
      */
-    private suspend fun filterReposWithInstallableAssets(repos: List<GitHubRepo>): List<AppItem> = coroutineScope {
+    private suspend fun filterReposWithInstallableAssets(repos: List<GitHubRepo>, platforms: List<com.samyak.repostore.data.model.Platform> = emptyList()): List<AppItem> = coroutineScope {
         val results = repos.map { repo ->
             async {
                 try {
-                    val hasInstallable = repoHasInstallableAssets(repo.owner.login, repo.name)
+                    val hasInstallable = repoHasInstallableAssets(repo.owner.login, repo.name, platforms)
                     if (hasInstallable) {
                         val release = releaseCache["${repo.owner.login}/${repo.name}"]
                         val tag = determineTag(repo, release)
@@ -173,10 +190,10 @@ class GitHubRepository(private val repoDao: RepoDao) {
                 repoDao.insertRepos(response.items)
             }
 
-            // Filter to only repos with APK releases if required
-            val appItems = if (filters.hasReleases) {
-                val filtered = filterReposWithInstallableAssets(response.items)
-                // If APK filtering returns empty but we have results, 
+            // Filter to only repos with installable assets if platforms are selected
+            val appItems = if (filters.platforms.isNotEmpty()) {
+                val filtered = filterReposWithInstallableAssets(response.items, filters.platforms)
+                // If filtering returns empty but we have results, 
                 // fall back to showing unfiltered results so user sees something
                 if (filtered.isEmpty() && response.items.isNotEmpty()) {
                     response.items.map { repo ->

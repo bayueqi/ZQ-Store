@@ -24,6 +24,7 @@ import com.samyak.repostore.data.model.AppItem
 import com.samyak.repostore.data.model.SearchFilters
 import com.samyak.repostore.data.model.SortOption
 import com.samyak.repostore.data.model.UpdatedWithin
+import com.samyak.repostore.data.model.Platform
 import com.samyak.repostore.databinding.FragmentSearchBinding
 import com.samyak.repostore.ui.activity.DetailActivity
 import com.samyak.repostore.ui.activity.DeveloperActivity
@@ -169,15 +170,15 @@ class SearchFragment : Fragment() {
             showUpdatedDialog()
         }
 
-        // Has APK chip
-        binding.chipHasApk.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.toggleHasReleases(isChecked)
+        // Platforms chip
+        binding.chipHasApk.text = "Platforms"
+        binding.chipHasApk.setOnClickListener {
+            showPlatformsDialog()
         }
 
         // Reset chip
         binding.chipReset.setOnClickListener {
             viewModel.resetFilters()
-            binding.chipHasApk.isChecked = true
             updateChipStates(SearchFilters.DEFAULT)
         }
     }
@@ -259,6 +260,44 @@ class SearchFragment : Fragment() {
             .show()
     }
 
+    private fun showPlatformsDialog() {
+        val platforms = Platform.entries
+        val platformNames = platforms.map { it.displayName }.toTypedArray()
+        val selectedPlatforms = viewModel.filters.value.platforms
+        val checkedItems = BooleanArray(platforms.size) {
+            selectedPlatforms.contains(platforms[it])
+        }
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Platforms")
+            .setMultiChoiceItems(platformNames, checkedItems) { _, which, isChecked ->
+                checkedItems[which] = isChecked
+            }
+            .setPositiveButton("OK") { _, _ ->
+                val selected = mutableListOf<Platform>()
+                for (i in platforms.indices) {
+                    if (checkedItems[i]) {
+                        selected.add(platforms[i])
+                    }
+                }
+                viewModel.updatePlatformsFilter(selected)
+                updatePlatformsChip(selected)
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun updatePlatformsChip(platforms: List<Platform>) {
+        binding.chipHasApk.text = if (platforms.isEmpty()) {
+            "Platforms"
+        } else if (platforms.size == 1) {
+            platforms[0].displayName
+        } else {
+            "${platforms.size} Platforms"
+        }
+        binding.chipHasApk.isChecked = platforms.isNotEmpty()
+    }
+
     private fun updateChipStates(filters: SearchFilters) {
         binding.chipSort.isChecked = filters.sortBy != SortOption.BEST_MATCH
         binding.chipSort.text = if (filters.sortBy != SortOption.BEST_MATCH) {
@@ -284,7 +323,7 @@ class SearchFragment : Fragment() {
             getString(R.string.updated)
         }
 
-        binding.chipHasApk.isChecked = filters.hasReleases
+        updatePlatformsChip(filters.platforms)
 
         binding.chipReset.isVisible = viewModel.hasActiveFilters()
     }

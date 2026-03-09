@@ -7,6 +7,7 @@ import com.samyak.repostore.data.model.AppItem
 import com.samyak.repostore.data.model.SearchFilters
 import com.samyak.repostore.data.model.SortOption
 import com.samyak.repostore.data.model.UpdatedWithin
+import com.samyak.repostore.data.model.Platform
 import com.samyak.repostore.data.repository.GitHubRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -209,6 +210,11 @@ class SearchViewModel(private val repository: GitHubRepository) : ViewModel() {
         searchWithFilters(newFilters)
     }
 
+    fun updatePlatformsFilter(platforms: List<Platform>) {
+        val newFilters = _filters.value.copy(platforms = platforms)
+        searchWithFilters(newFilters)
+    }
+
     fun toggleShowFilters() {
         _showFilters.value = !_showFilters.value
     }
@@ -239,7 +245,7 @@ class SearchViewModel(private val repository: GitHubRepository) : ViewModel() {
                current.language != default.language ||
                current.minStars != default.minStars ||
                current.updatedWithin != default.updatedWithin ||
-               current.hasReleases != default.hasReleases
+               current.platforms != default.platforms
     }
 }
 
