@@ -1,6 +1,6 @@
-# ZQ Store
+# ZQ-Store
 
-一款基于GitHub的开源应用商店，帮助用户发现和下载各种平台的开源应用。
+本仓库基于[RepoStore](https://github.com/samyak2403/RepoStore)，在此基础上进行了一系列优化。
 
 ## 功能特性
 
