@@ -158,6 +158,8 @@
     
 
     
+    <string name="source_code">源代码</string>
+
     <!-- 动态内容格式字符串 -->
     <string name="download_progress">%s (%s/%s)</string>
     <string name="download_starting">0%%</string>
