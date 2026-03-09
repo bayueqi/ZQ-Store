@@ -17,7 +17,7 @@ import com.samyak.repostore.data.auth.GitHubAuth
 
 import com.samyak.repostore.databinding.FragmentSettingsBinding
 import com.samyak.repostore.ui.activity.AboutActivity
-import com.samyak.repostore.ui.activity.AppDeveloperActivity
+
 
 import com.samyak.repostore.ui.activity.GitHubSignInActivity
 
@@ -47,8 +47,6 @@ class SettingsFragment : Fragment() {
         setupManageAppsSection()
         setupDownloadSettingsSection()
         setupAboutSection()
-        setupDeveloperSection()
-        setupSourceCodeSection()
     }
 
     override fun onResume() {
@@ -117,24 +115,7 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    private fun setupDeveloperSection() {
-        binding.developerCard.setOnClickListener {
-            startActivity(Intent(requireContext(), AppDeveloperActivity::class.java))
-        }
-    }
 
-
-
-    private fun setupSourceCodeSection() {
-        binding.sourceCodeCard.setOnClickListener {
-            try {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(SOURCE_CODE_URL))
-                startActivity(intent)
-            } catch (e: Exception) {
-                // Handle error silently
-            }
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

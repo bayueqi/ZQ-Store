@@ -103,10 +103,7 @@
     <string name="no_token_set">未设置令牌</string>
     <string name="token_configured">令牌已配置</string>
     
-    <!-- 开发者信息 -->
-    <string name="developer">开发者</string>
-    <string name="followers">关注者</string>
-    <string name="following">正在关注</string>
+
     
     <!-- 下载和安装 -->
     <string name="downloading">下载中…</string>
@@ -158,7 +155,7 @@
     
 
     
-    <string name="source_code">源代码</string>
+
 
     <!-- 动态内容格式字符串 -->
     <string name="download_progress">%s (%s/%s)</string>
