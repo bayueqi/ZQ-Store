@@ -3,7 +3,7 @@
 
     <!-- 导航 -->
     <string name="home">首页</string>
-    <string name="games">游戏</string>
+
     <string name="apps">应用</string>
     <string name="search">搜索</string>
     <string name="profile">个人</string>

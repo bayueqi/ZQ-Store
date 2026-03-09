@@ -41,10 +41,6 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(HomeFragment.newInstance())
                     true
                 }
-                R.id.nav_apps -> {
-                    loadFragment(HomeFragment.newInstance())
-                    true
-                }
                 R.id.nav_search -> {
                     loadFragment(SearchFragment.newInstance())
                     true
