@@ -16,7 +16,7 @@ import com.samyak.repostore.data.api.RetrofitClient
 import com.samyak.repostore.data.auth.GitHubAuth
 
 import com.samyak.repostore.databinding.FragmentSettingsBinding
-import com.samyak.repostore.ui.activity.AboutActivity
+
 
 
 import com.samyak.repostore.ui.activity.GitHubSignInActivity
@@ -46,7 +46,6 @@ class SettingsFragment : Fragment() {
         setupMyAppsSection()
         setupManageAppsSection()
         setupDownloadSettingsSection()
-        setupAboutSection()
     }
 
     override fun onResume() {
@@ -109,11 +108,7 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    private fun setupAboutSection() {
-        binding.aboutCard.setOnClickListener {
-            startActivity(Intent(requireContext(), AboutActivity::class.java))
-        }
-    }
+
 
 
 
