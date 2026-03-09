@@ -190,7 +190,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
                 repoDao.insertRepos(response.items)
             }
 
-            // Filter to only repos with installable assets if platforms are selected
+            // Filter to only repos with installable assets
             val appItems = if (filters.platforms.isNotEmpty()) {
                 val filtered = filterReposWithInstallableAssets(response.items, filters.platforms)
                 // If filtering returns empty but we have results, 
@@ -204,9 +204,16 @@ class GitHubRepository(private val repoDao: RepoDao) {
                     filtered
                 }
             } else {
-                response.items.map { repo ->
-                    val tag = determineTag(repo, null)
-                    AppItem(repo, null, tag)
+                val filtered = filterReposWithInstallableAssets(response.items)
+                // If filtering returns empty but we have results, 
+                // fall back to showing unfiltered results so user sees something
+                if (filtered.isEmpty() && response.items.isNotEmpty()) {
+                    response.items.map { repo ->
+                        val tag = determineTag(repo, null)
+                        AppItem(repo, null, tag)
+                    }
+                } else {
+                    filtered
                 }
             }
             
