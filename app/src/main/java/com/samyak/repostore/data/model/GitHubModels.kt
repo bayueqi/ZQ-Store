@@ -82,10 +82,14 @@ enum class AppTag {
 }
 
 enum class AppCategory(val displayName: String, val queries: List<String>) {
-    ALL("All", listOf("android app", "topic:android")),
-    TOOLS("Tools", listOf("android tool", "android utility", "topic:android-tool")),
-    PRODUCTIVITY("Productivity", listOf("android productivity", "android notes", "android todo", "topic:android-productivity")),
-    OPEN_SOURCE("Open Source", listOf("android foss", "android open-source", "topic:foss topic:android"));
+    ALL("推荐", listOf("android app", "topic:android")),
+    GAMES("游戏", listOf("android game", "android gaming", "topic:android-game")),
+    SOCIAL("社交", listOf("android social", "android chat", "topic:android-social")),
+    VIDEO("视频", listOf("android video", "android player", "topic:android-video")),
+    MUSIC("音乐", listOf("android music", "android player", "topic:android-music")),
+    TOOLS("工具", listOf("android tool", "android utility", "topic:android-tool")),
+    LIFESTYLE("生活", listOf("android lifestyle", "android health", "topic:android-lifestyle"));
+
 
     // For backward compatibility
     val query: String get() = queries.first()
