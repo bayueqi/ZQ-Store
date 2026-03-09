@@ -22,7 +22,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
     private val releaseCache = mutableMapOf<String, GitHubRelease?>()
     private val screenshotCache = mutableMapOf<String, List<String>>()
     private val developerReposCache = mutableMapOf<String, Pair<Long, List<AppItem>>>()
-    private val apkReposCache = mutableMapOf<String, Boolean>() // Cache for repos with APK
+    private val installableReposCache = mutableMapOf<String, Boolean>() // Cache for repos with installable assets
     
     private var lastFetchTime = 0L
     private val cacheValidityMs = 10 * 60 * 1000L // 10 minutes
@@ -35,11 +35,22 @@ class GitHubRepository(private val repoDao: RepoDao) {
 
     private val imageExtensions = listOf(".png", ".jpg", ".jpeg", ".gif", ".webp")
     
-    // Installable asset extensions (APK for Android)
-    private val installableExtensions = listOf(".apk", ".aab")
+    // Installable asset extensions for different platforms
+    private val installableExtensions = listOf(
+        // Android
+        ".apk", ".aab",
+        // Windows
+        ".exe", ".msi", ".msix", ".appx",
+        // macOS
+        ".dmg", ".pkg", ".app",
+        // Linux
+        ".deb", ".rpm", ".snap", ".flatpak", ".AppImage",
+        // iOS
+        ".ipa"
+    )
 
     /**
-     * Check if a release has installable APK assets
+     * Check if a release has installable assets for any platform
      */
     private fun hasInstallableAsset(release: GitHubRelease?): Boolean {
         if (release == null) return false
@@ -51,37 +62,37 @@ class GitHubRepository(private val repoDao: RepoDao) {
     }
 
     /**
-     * Check if repo has APK in latest release
+     * Check if repo has installable assets in latest release
      */
-    private suspend fun repoHasApk(owner: String, repoName: String): Boolean {
+    private suspend fun repoHasInstallableAssets(owner: String, repoName: String): Boolean {
         val cacheKey = "$owner/$repoName"
         
         // Check cache first
-        apkReposCache[cacheKey]?.let { return it }
+        installableReposCache[cacheKey]?.let { return it }
         
         return try {
             val release = api.getLatestRelease(owner, repoName)
-            val hasApk = hasInstallableAsset(release)
-            apkReposCache[cacheKey] = hasApk
-            if (hasApk) {
+            val hasInstallable = hasInstallableAsset(release)
+            installableReposCache[cacheKey] = hasInstallable
+            if (hasInstallable) {
                 releaseCache[cacheKey] = release
             }
-            hasApk
+            hasInstallable
         } catch (e: Exception) {
-            apkReposCache[cacheKey] = false
+            installableReposCache[cacheKey] = false
             false
         }
     }
 
     /**
-     * Filter repos to only include those with APK releases
+     * Filter repos to only include those with installable assets
      */
-    private suspend fun filterReposWithApk(repos: List<GitHubRepo>): List<AppItem> = coroutineScope {
+    private suspend fun filterReposWithInstallableAssets(repos: List<GitHubRepo>): List<AppItem> = coroutineScope {
         val results = repos.map { repo ->
             async {
                 try {
-                    val hasApk = repoHasApk(repo.owner.login, repo.name)
-                    if (hasApk) {
+                    val hasInstallable = repoHasInstallableAssets(repo.owner.login, repo.name)
+                    if (hasInstallable) {
                         val release = releaseCache["${repo.owner.login}/${repo.name}"]
                         val tag = determineTag(repo, release)
                         AppItem(repo, release, tag)
@@ -115,7 +126,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
             val response = api.searchRepositories(searchQuery, perPage = 40, page = page)
 
             // Filter to only repos with APK releases
-            val appItems = filterReposWithApk(response.items)
+            val appItems = filterReposWithInstallableAssets(response.items)
 
             if (appItems.isNotEmpty()) {
                 repoDao.insertRepos(response.items)
@@ -164,7 +175,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
 
             // Filter to only repos with APK releases if required
             val appItems = if (filters.hasReleases) {
-                val filtered = filterReposWithApk(response.items)
+                val filtered = filterReposWithInstallableAssets(response.items)
                 // If APK filtering returns empty but we have results, 
                 // fall back to showing unfiltered results so user sees something
                 if (filtered.isEmpty() && response.items.isNotEmpty()) {
@@ -292,7 +303,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
             lastFetchTime = System.currentTimeMillis()
 
             // Filter to only repos with APK releases
-            val appItems = filterReposWithApk(response.items)
+            val appItems = filterReposWithInstallableAssets(response.items)
 
             if (appItems.isNotEmpty() && page == 1) {
                 repoDao.clearAll()
@@ -314,7 +325,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
                 val response = api.searchRepositories(query, perPage = 30, page = page)
 
                 // Filter to only repos with APK releases
-                val appItems = filterReposWithApk(response.items)
+                val appItems = filterReposWithInstallableAssets(response.items)
 
                 if (appItems.isNotEmpty()) {
                     repoDao.insertRepos(response.items)
@@ -571,7 +582,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
         releaseCache.clear()
         screenshotCache.clear()
         developerReposCache.clear()
-        apkReposCache.clear()
+        installableReposCache.clear()
         lastFetchTime = 0L
     }
 }
