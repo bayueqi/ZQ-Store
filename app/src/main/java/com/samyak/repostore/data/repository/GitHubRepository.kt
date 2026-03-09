@@ -192,29 +192,9 @@ class GitHubRepository(private val repoDao: RepoDao) {
 
             // Filter to only repos with installable assets
             val appItems = if (filters.platforms.isNotEmpty()) {
-                val filtered = filterReposWithInstallableAssets(response.items, filters.platforms)
-                // If filtering returns empty but we have results, 
-                // fall back to showing unfiltered results so user sees something
-                if (filtered.isEmpty() && response.items.isNotEmpty()) {
-                    response.items.map { repo ->
-                        val tag = determineTag(repo, null)
-                        AppItem(repo, null, tag)
-                    }
-                } else {
-                    filtered
-                }
+                filterReposWithInstallableAssets(response.items, filters.platforms)
             } else {
-                val filtered = filterReposWithInstallableAssets(response.items)
-                // If filtering returns empty but we have results, 
-                // fall back to showing unfiltered results so user sees something
-                if (filtered.isEmpty() && response.items.isNotEmpty()) {
-                    response.items.map { repo ->
-                        val tag = determineTag(repo, null)
-                        AppItem(repo, null, tag)
-                    }
-                } else {
-                    filtered
-                }
+                filterReposWithInstallableAssets(response.items)
             }
             
             // Apply Play Store-like relevance scoring and sort
