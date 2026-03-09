@@ -87,8 +87,8 @@ enum class AppCategory(val displayName: String, val queries: List<String>) {
     SOCIAL("社交", listOf("android social", "android chat", "topic:android-social")),
     VIDEO("视频", listOf("android video", "android player", "topic:android-video")),
     MUSIC("音乐", listOf("android music", "android player", "topic:android-music")),
-    TOOLS("工具", listOf("android tool", "android utility", "topic:android-tool")),
-    LIFESTYLE("生活", listOf("android lifestyle", "android health", "topic:android-lifestyle"));
+    ANIME("动漫", listOf("android anime", "android manga", "topic:android-anime"));
+
 
 
     // For backward compatibility
