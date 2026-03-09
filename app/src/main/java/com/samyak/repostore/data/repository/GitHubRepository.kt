@@ -345,17 +345,36 @@ class GitHubRepository(private val repoDao: RepoDao) {
     suspend fun getAppsByCategory(category: AppCategory, page: Int = 1): Result<List<AppItem>> {
         return withContext(Dispatchers.IO) {
             try {
-                val query = "${category.query} stars:>50"
-                val response = api.searchRepositories(query, perPage = 30, page = page)
-
-                // Filter to only repos with APK releases
-                val appItems = filterReposWithInstallableAssets(response.items)
-
-                if (appItems.isNotEmpty()) {
-                    repoDao.insertRepos(response.items)
+                // Use all queries for the category to get more results
+                val allAppItems = mutableListOf<AppItem>()
+                val seenRepoIds = mutableSetOf<Long>()
+                
+                // Try all queries for the category
+                category.queries.forEach { queryTerm ->
+                    val query = "$queryTerm stars:>50"
+                    try {
+                        val response = api.searchRepositories(query, perPage = 30, page = page)
+                        
+                        // Filter to only repos with APK releases
+                        val appItems = filterReposWithInstallableAssets(response.items)
+                        
+                        // Add only unique apps
+                        appItems.forEach { appItem ->
+                            if (!seenRepoIds.contains(appItem.repo.id)) {
+                                seenRepoIds.add(appItem.repo.id)
+                                allAppItems.add(appItem)
+                            }
+                        }
+                        
+                        if (appItems.isNotEmpty()) {
+                            repoDao.insertRepos(response.items)
+                        }
+                    } catch (e: Exception) {
+                        // Ignore individual query errors and continue with next query
+                    }
                 }
                 
-                Result.success(appItems)
+                Result.success(allAppItems)
             } catch (e: HttpException) {
                 handleHttpException(e)
             } catch (e: Exception) {
