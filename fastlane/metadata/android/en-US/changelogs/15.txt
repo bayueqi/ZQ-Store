@@ -1,0 +1,4 @@
+
+- Improved app detection and installation logic
+- Added uninstall feature
+- Fixed settings screen layout issues

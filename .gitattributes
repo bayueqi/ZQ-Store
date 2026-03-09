@@ -1,0 +1,11 @@
+# Handle line endings automatically for files detected as text
+* text=auto
+
+# Shell scripts must use LF line endings for proper execution
+# on Unix-based systems (including F-Droid build server)
+*.sh text eol=lf
+gradlew text eol=lf
+
+# Batch files should use CRLF for Windows
+*.bat text eol=crlf
+gradlew.bat text eol=crlf

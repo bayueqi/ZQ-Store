@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Dark theme - Play Store inspired -->
+    <style name="Base.Theme.RepoStore" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">#81C784</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorSecondary">#81C784</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar">false</item>
+        
+        <!-- Toolbar colors -->
+        <item name="toolbarStyle">@style/Widget.RepoStore.Toolbar</item>
+    </style>
+
+    <style name="Theme.RepoStore" parent="Base.Theme.RepoStore" />
+
+    <!-- Toolbar Style for Dark -->
+    <style name="Widget.RepoStore.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextColor">?attr/colorOnSurface</item>
+        <item name="navigationIconTint">?attr/colorOnSurface</item>
+    </style>
+</resources>

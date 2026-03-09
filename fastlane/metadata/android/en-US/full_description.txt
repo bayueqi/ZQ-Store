@@ -1,0 +1,29 @@
+RepoStore is a native Android app that turns GitHub releases into a clean, Play Store-style experience.
+
+<b>Key Features:</b>
+
+• <b>Smart Discovery</b> - Home sections for Trending, Recently Updated, and Featured projects. Only repos with valid APK assets are shown.
+• <b>Latest-Release Installs</b> - Fetches the latest release for each repo and shows only assets from the newest release with a single Install action.
+• <b>Rich Details Screen</b> - View app name, version, stars, forks, language stats, rendered README content, release notes with markdown formatting, and screenshot gallery.
+• <b>Install & Update Tracking</b> - Tracks installations and shows when updates are available. Shows "Open" for installed apps.
+• <b>Material You Design</b> - Material 3 design with dynamic theming support and dark mode.
+• <b>GitHub Integration</b> - Optional GitHub sign-in to increase API rate limit from 60 to 5,000 requests/hour.
+
+<b>How it works:</b>
+
+RepoStore uses GitHub's public API to search for Android repositories. It filters to show only those that have real, downloadable APK files in their releases. When you find an app you like, tap Install to download and install it directly.
+
+<b>Privacy & Security:</b>
+
+• No tracking or analytics
+• No ads
+• Open source (MIT License)
+• Downloads come directly from GitHub releases
+• HTTPS-only connections
+
+<b>Requirements:</b>
+
+• Android 8.0 (API 26) or higher
+• Internet connection
+
+RepoStore is free and open source. If you find it helpful, consider starring the GitHub repository!

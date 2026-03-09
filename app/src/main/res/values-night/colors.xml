@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Chip background for dark mode -->
+    <color name="chip_background">#1B3D2F</color>
+</resources>
