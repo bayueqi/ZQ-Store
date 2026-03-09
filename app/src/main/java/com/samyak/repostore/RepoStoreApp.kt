@@ -16,9 +16,6 @@ class RepoStoreApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        
-        // Apply saved theme preference
-        com.samyak.repostore.data.prefs.ThemePreferences.applySavedTheme(this)
 
         // Initialize RetrofitClient with cache
         // OAuth token from GitHubAuth takes priority in RetrofitClient

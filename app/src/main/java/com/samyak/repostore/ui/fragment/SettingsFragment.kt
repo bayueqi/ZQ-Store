@@ -14,7 +14,7 @@ import com.google.android.material.card.MaterialCardView
 import com.samyak.repostore.R
 import com.samyak.repostore.data.api.RetrofitClient
 import com.samyak.repostore.data.auth.GitHubAuth
-import com.samyak.repostore.data.prefs.ThemePreferences
+
 import com.samyak.repostore.databinding.FragmentSettingsBinding
 import com.samyak.repostore.ui.activity.AboutActivity
 import com.samyak.repostore.ui.activity.AppDeveloperActivity
@@ -43,7 +43,6 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAccountSection()
-        setupAppearanceSection()
         setupMyAppsSection()
         setupManageAppsSection()
         setupDownloadSettingsSection()
@@ -94,81 +93,7 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    private fun setupAppearanceSection() {
-        // Update selection state based on current theme
-        updateThemeSelection()
 
-        // Set click listeners for each theme option
-        binding.themeSystemCard.setOnClickListener {
-            selectTheme(ThemePreferences.THEME_SYSTEM)
-        }
-
-        binding.themeForYouCard.setOnClickListener {
-            selectTheme(ThemePreferences.THEME_FOR_YOU)
-        }
-
-        binding.themeDarkCard.setOnClickListener {
-            selectTheme(ThemePreferences.THEME_DARK)
-        }
-
-        binding.themeLightCard.setOnClickListener {
-            selectTheme(ThemePreferences.THEME_LIGHT)
-        }
-    }
-
-    private fun selectTheme(themeMode: Int) {
-        ThemePreferences.setThemeMode(requireContext(), themeMode)
-        updateThemeSelection()
-    }
-
-    private fun updateThemeSelection() {
-        val currentTheme = ThemePreferences.getThemeMode(requireContext())
-        
-        // Helper to resolve theme attributes
-        fun getThemeColor(attrId: Int): Int {
-            val typedValue = android.util.TypedValue()
-            requireContext().theme.resolveAttribute(attrId, typedValue, true)
-            return typedValue.data
-        }
-
-        // Get colors for selected and unselected states
-        // Use primary container for selected (or a distinct color)
-        val selectedColor = try {
-            getThemeColor(com.google.android.material.R.attr.colorPrimaryContainer)
-        } catch (e: Exception) {
-            ContextCompat.getColor(requireContext(), R.color.md_theme_primaryContainer)
-        }
-        
-        // Use surface color for unselected (dynamic based on theme)
-        val unselectedColor = try {
-             getThemeColor(com.google.android.material.R.attr.colorSurfaceVariant)
-        } catch (e: Exception) {
-             ContextCompat.getColor(requireContext(), R.color.md_theme_surface)
-        }
-        
-        val strokeColor = try {
-            getThemeColor(com.google.android.material.R.attr.colorSurface)
-        } catch (e: Exception) {
-            ContextCompat.getColor(requireContext(), R.color.md_theme_primary)
-        }
-        
-        // Helper function to update card visual state
-        fun updateCard(card: MaterialCardView, isSelected: Boolean) {
-            if (isSelected) {
-                card.setCardBackgroundColor(selectedColor)
-                card.strokeWidth = resources.getDimensionPixelSize(R.dimen.theme_card_stroke_width)
-                card.strokeColor = strokeColor
-            } else {
-                card.setCardBackgroundColor(unselectedColor)
-                card.strokeWidth = 0
-            }
-        }
-        
-        updateCard(binding.themeSystemCard, currentTheme == ThemePreferences.THEME_SYSTEM)
-        updateCard(binding.themeForYouCard, currentTheme == ThemePreferences.THEME_FOR_YOU)
-        updateCard(binding.themeDarkCard, currentTheme == ThemePreferences.THEME_DARK)
-        updateCard(binding.themeLightCard, currentTheme == ThemePreferences.THEME_LIGHT)
-    }
 
     private fun setupMyAppsSection() {
         binding.myAppsCard.setOnClickListener {

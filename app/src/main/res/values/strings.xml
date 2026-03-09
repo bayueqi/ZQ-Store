@@ -197,12 +197,7 @@
     <string name="no_installed_apps">未安装应用</string>
     <string name="no_installed_apps_hint">您从收藏中安装的应用将显示在这里</string>
     
-    <!-- 外观 -->
-    <string name="appearance">外观</string>
-    <string name="theme_system">系统</string>
-    <string name="theme_for_you">为您</string>
-    <string name="theme_dark">深色</string>
-    <string name="theme_light">浅色</string>
+
     
     <!-- 下载设置 -->
     <string name="download_settings">下载设置</string>
