@@ -173,6 +173,8 @@ class SearchFragment : Fragment() {
         // Platforms chip
         binding.chipHasApk.text = "平台"
         binding.chipHasApk.setChipIconResource(R.drawable.ic_platform)
+        binding.chipHasApk.isCheckedIconVisible = false
+        binding.chipHasApk.chipIconVisible = true
         binding.chipHasApk.setOnClickListener {
             showPlatformsDialog()
         }
@@ -299,6 +301,7 @@ class SearchFragment : Fragment() {
         binding.chipHasApk.isChecked = platforms.isNotEmpty()
         binding.chipHasApk.setChipIconResource(R.drawable.ic_platform)
         binding.chipHasApk.isCheckedIconVisible = false
+        binding.chipHasApk.chipIconVisible = true
     }
 
     private fun updateChipStates(filters: SearchFilters) {
