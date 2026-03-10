@@ -165,7 +165,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
     suspend fun searchApps(query: String, page: Int = 1): Result<List<AppItem>> = withContext(Dispatchers.IO) {
         try {
             // Check cache first
-            val cacheKey = "search_$query_$page"
+            val cacheKey = "search_${query}_$page"
             val currentTime = System.currentTimeMillis()
             searchCache[cacheKey]?.let { (timestamp, apps) ->
                 if (currentTime - timestamp < searchCacheValidityMs) {
