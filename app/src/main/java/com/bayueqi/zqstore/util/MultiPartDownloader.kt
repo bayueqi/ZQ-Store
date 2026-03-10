@@ -67,11 +67,11 @@ class MultiPartDownloader(private val context: Context) {
         isCancelled = false
         
         try {
-            // Apply mirror proxy if enabled
+            // Apply mirror proxy if enabled (always get latest proxy settings)
             val downloadUrl = DownloadPreferences.transformUrl(context, url)
             currentDownloadUrl = downloadUrl
             currentFileName = fileName
-            Log.d(TAG, "Starting download: $downloadUrl")
+            Log.d(TAG, "Starting download: $downloadUrl, Proxy enabled: ${DownloadPreferences.isMirrorProxyEnabled(context)}")
             
             // Delete existing file
             val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)

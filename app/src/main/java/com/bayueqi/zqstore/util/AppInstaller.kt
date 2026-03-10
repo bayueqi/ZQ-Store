@@ -106,9 +106,11 @@ class AppInstaller private constructor(private val context: Context) {
         // Clean old file
         deleteFile(fileName)
 
-        // Check if multi-part download is enabled
+        // Check if multi-part download is enabled (always get latest settings)
         val useMultiPart = DownloadPreferences.isMultiPartEnabled(context) || 
                           DownloadPreferences.isMirrorProxyEnabled(context)
+        
+        Log.d(TAG, "Download settings: useMultiPart=$useMultiPart, proxyEnabled=${DownloadPreferences.isMirrorProxyEnabled(context)}")
         
         if (useMultiPart) {
             downloadWithMultiPart(url, fileName, onStateChanged)
