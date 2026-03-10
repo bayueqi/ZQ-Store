@@ -489,6 +489,12 @@ class AppInstaller private constructor(private val context: Context) {
                 Log.e(TAG, "Cancel error", e)
             }
         }
+        // Cancel multi-part download if in progress
+        try {
+            multiPartDownloader.cancel()
+        } catch (e: Exception) {
+            Log.e(TAG, "Multi-part cancel error", e)
+        }
         val callback = stateCallback
         cleanup()
         mainHandler.post {
@@ -649,7 +655,7 @@ class AppInstaller private constructor(private val context: Context) {
             val dao = (context.applicationContext as RepoStoreApp).installedAppMappingDao
             val mappedPackage = dao.getPackageNameSync(ownerName, repoName)
             if (mappedPackage != null && isInstalled(mappedPackage)) {
-                Log.d(TAG, "findPackage: DB MATCH â€?Found mapped package '$mappedPackage'")
+                Log.d(TAG, "findPackage: DB MATCH ï¿½?Found mapped package '$mappedPackage'")
                 return mappedPackage
             }
         } catch (e: Exception) {
