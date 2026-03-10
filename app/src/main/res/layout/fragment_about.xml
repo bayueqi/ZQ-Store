@@ -96,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="ZQ-Store 是一个基于 GitHub 的应用商店，帮助您发现和安装来自 GitHub 的 Android 应用。它会自动检测仓库中的可安装资产，并提供一个整洁、美观的界面来浏览和管理应用。"
+                    android:text="ZQ-Store 是一个基于 GitHub 的应用商店，帮助您发现和安装来自 GitHub 中的应用。它会自动检测仓库中的可安装资产，并提供一个整洁、美观的界面来浏览和管理应用。"
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:lineSpacingExtra="8dp" />
