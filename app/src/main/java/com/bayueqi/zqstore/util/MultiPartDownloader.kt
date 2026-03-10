@@ -35,6 +35,7 @@ class MultiPartDownloader(private val context: Context) {
     
     private var downloadJob: Job? = null
     private var isCancelled = false
+    private var currentDownloadUrl: String? = null
     
     /**
      * Download state for progress tracking
@@ -67,6 +68,7 @@ class MultiPartDownloader(private val context: Context) {
         try {
             // Apply mirror proxy if enabled
             val downloadUrl = DownloadPreferences.transformUrl(context, url)
+            currentDownloadUrl = downloadUrl
             Log.d(TAG, "Starting download: $downloadUrl")
             
             // Delete existing file
@@ -112,9 +114,18 @@ class MultiPartDownloader(private val context: Context) {
             }
         } catch (e: Exception) {
             Log.e(TAG, "Download error", e)
-            withContext(Dispatchers.Main) {
-                onStateChanged(DownloadState.Error(e.message ?: "Download failed"))
+            // Handle network errors specifically
+            val errorMessage = if (e.message?.contains("open failed") == true) {
+                "Network error: Failed to connect to server. Please check your proxy settings."
+            } else {
+                e.message ?: "Download failed"
             }
+            withContext(Dispatchers.Main) {
+                onStateChanged(DownloadState.Error(errorMessage))
+            }
+        } finally {
+            // Clean up
+            currentDownloadUrl = null
         }
     }
     
@@ -354,6 +365,8 @@ class MultiPartDownloader(private val context: Context) {
     fun cancel() {
         isCancelled = true
         downloadJob?.cancel()
+        currentDownloadUrl = null
+        Log.d(TAG, "Download cancelled and resources cleaned up")
     }
 }
 

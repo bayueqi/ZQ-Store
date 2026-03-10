@@ -127,11 +127,4 @@ data class GitHubUser(
     val followers: Int,
     val following: Int,
     @SerializedName("created_at") val createdAt: String
-)tring?,
-    @SerializedName("twitter_username") val twitterUsername: String?,
-    @SerializedName("public_repos") val publicRepos: Int,
-    @SerializedName("public_gists") val publicGists: Int,
-    val followers: Int,
-    val following: Int,
-    @SerializedName("created_at") val createdAt: String
 )
