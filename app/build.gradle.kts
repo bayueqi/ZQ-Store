@@ -10,7 +10,8 @@ val localProps = Properties().apply {
     val file = rootProject.file("local.properties")
     if (file.exists()) file.inputStream().use { this.load(it) }
 }
-val localGithubClientId = (localProps.getProperty("GITHUB_CLIENT_ID") ?: "Ov23liinOZYK0IduPvuO").trim()
+// 优先从环境变量读取，然后从local.properties读取，最后使用默认值
+val localGithubClientId = (System.getenv("GITHUB_CLIENT_ID") ?: localProps.getProperty("GITHUB_CLIENT_ID") ?: "Ov23ctf9NgjUJIeZTzOv").trim()
 
 android {
     namespace = "com.samyak.repostore"
