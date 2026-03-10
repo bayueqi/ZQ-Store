@@ -19,3 +19,4 @@
         android:contentDescription="@string/screenshot" />
 
 </com.google.android.material.card.MaterialCardView>
+

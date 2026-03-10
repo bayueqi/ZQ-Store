@@ -45,3 +45,4 @@
         tools:listitem="@layout/item_app_playstore" />
 
 </LinearLayout>
+

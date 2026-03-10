@@ -15,11 +15,11 @@ val localProps = Properties().apply {
 val localGithubClientId = (System.getenv("APP_GITHUB_CLIENT_ID") ?: localProps.getProperty("GITHUB_CLIENT_ID")).trim()
 
 android {
-    namespace = "com.samyak.repostore"
+    namespace = "com.bayueqi.zqstore"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.samyak.repostore"
+        applicationId = "com.bayueqi.zqstore"
         minSdk = 26
         targetSdk = 36
         versionCode = 3

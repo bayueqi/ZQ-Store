@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Skeleton layout for app detail page with shimmer effect -->
-<com.samyak.repostore.ui.widget.ShimmerFrameLayout
+<com\.bayueqi\.zqstore.ui.widget.ShimmerFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -236,4 +236,5 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-</com.samyak.repostore.ui.widget.ShimmerFrameLayout>
+</com\.bayueqi\.zqstore.ui.widget.ShimmerFrameLayout>
+
