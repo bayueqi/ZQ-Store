@@ -151,7 +151,8 @@
                 android:checkable="true"
                 android:checked="true"
                 android:text="@string/has_apk"
-                app:checkedIconVisible="true" />
+                app:checkedIconVisible="false"
+                app:chipIconVisible="true" />
 
             <!-- Reset Filters Chip -->
             <com.google.android.material.chip.Chip
