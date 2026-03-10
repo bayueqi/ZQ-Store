@@ -54,6 +54,7 @@ class AppInstaller private constructor(private val context: Context) {
     private val mainHandler = Handler(Looper.getMainLooper())
     
     private var currentDownloadId: Long = -1
+    private var currentFileName: String? = null
     private var currentRepoName: String? = null
     private var currentOwnerName: String? = null
     private var downloadReceiver: BroadcastReceiver? = null
@@ -97,6 +98,7 @@ class AppInstaller private constructor(private val context: Context) {
 
         // Store callback and context
         stateCallback = onStateChanged
+        currentFileName = fileName
         currentRepoName = repoName
         currentOwnerName = ownerName
         isDownloading = true
@@ -485,6 +487,11 @@ class AppInstaller private constructor(private val context: Context) {
         if (currentDownloadId != -1L) {
             try {
                 downloadManager.remove(currentDownloadId)
+                // Clean up partial download file from DownloadManager
+                val fileName = currentFileName
+                if (fileName != null) {
+                    deleteFile(fileName)
+                }
             } catch (e: Exception) {
                 Log.e(TAG, "Cancel error", e)
             }
@@ -506,6 +513,7 @@ class AppInstaller private constructor(private val context: Context) {
         stopProgressTracking()
         unregisterReceiver()
         currentDownloadId = -1
+        currentFileName = null
         currentRepoName = null
         currentOwnerName = null
         isDownloading = false

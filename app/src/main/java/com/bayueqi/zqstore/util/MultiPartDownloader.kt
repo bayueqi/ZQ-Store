@@ -36,6 +36,7 @@ class MultiPartDownloader(private val context: Context) {
     private var downloadJob: Job? = null
     private var isCancelled = false
     private var currentDownloadUrl: String? = null
+    private var currentFileName: String? = null
     
     /**
      * Download state for progress tracking
@@ -69,6 +70,7 @@ class MultiPartDownloader(private val context: Context) {
             // Apply mirror proxy if enabled
             val downloadUrl = DownloadPreferences.transformUrl(context, url)
             currentDownloadUrl = downloadUrl
+            currentFileName = fileName
             Log.d(TAG, "Starting download: $downloadUrl")
             
             // Delete existing file
@@ -126,6 +128,7 @@ class MultiPartDownloader(private val context: Context) {
         } finally {
             // Clean up
             currentDownloadUrl = null
+            currentFileName = null
         }
     }
     
@@ -365,8 +368,29 @@ class MultiPartDownloader(private val context: Context) {
     fun cancel() {
         isCancelled = true
         downloadJob?.cancel()
+        // Clean up partial download file
+        cleanupDownloadFile()
         currentDownloadUrl = null
+        currentFileName = null
         Log.d(TAG, "Download cancelled and resources cleaned up")
+    }
+    
+    /**
+     * Clean up partial download file
+     */
+    private fun cleanupDownloadFile() {
+        if (currentFileName != null) {
+            try {
+                val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                val targetFile = File(downloadDir, currentFileName)
+                if (targetFile.exists()) {
+                    targetFile.delete()
+                    Log.d(TAG, "Cleaned up partial download file: $currentFileName")
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error cleaning up download file", e)
+            }
+        }
     }
 }
 
