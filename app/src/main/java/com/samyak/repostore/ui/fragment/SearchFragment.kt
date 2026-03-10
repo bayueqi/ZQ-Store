@@ -172,9 +172,6 @@ class SearchFragment : Fragment() {
 
         // Platforms chip
         binding.chipHasApk.text = "平台"
-        binding.chipHasApk.setChipIconResource(R.drawable.ic_platform)
-        binding.chipHasApk.isCheckedIconVisible = false
-        binding.chipHasApk.chipIconVisible = true
         binding.chipHasApk.setOnClickListener {
             showPlatformsDialog()
         }
