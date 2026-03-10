@@ -77,7 +77,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
     /**
      * Check if repo has installable assets in latest release
      */
-    private suspend fun repoHasInstallableAssets(owner: String, repoName: String, platforms: List<com.samyak.repostore.data.model.Platform> = emptyList()): Boolean {
+    suspend fun repoHasInstallableAssets(owner: String, repoName: String, platforms: List<com.samyak.repostore.data.model.Platform> = emptyList()): Boolean {
         val cacheKey = if (platforms.isEmpty()) {
             "$owner/$repoName"
         } else {
@@ -573,7 +573,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
         return Result.failure(Exception(message))
     }
 
-    private fun determineTag(repo: GitHubRepo, release: GitHubRelease?): AppTag? {
+    fun determineTag(repo: GitHubRepo, release: GitHubRelease?): AppTag? {
         if (repo.archived) return AppTag.ARCHIVED
 
         val now = Instant.now()

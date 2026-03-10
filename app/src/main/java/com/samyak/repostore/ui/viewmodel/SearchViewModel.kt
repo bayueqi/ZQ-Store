@@ -134,10 +134,23 @@ class SearchViewModel(private val repository: GitHubRepository) : ViewModel() {
             // First try local cache for instant results
             val cachedResults = repository.searchCachedRepos(query).first()
             if (cachedResults.isNotEmpty()) {
-                val appItems = cachedResults.map { repo ->
-                    AppItem(repo, null, null)
+                // Filter cached results to only include those with installable assets
+                val appItems = mutableListOf<AppItem>()
+                for (repo in cachedResults) {
+                    try {
+                        val hasInstallable = repository.repoHasInstallableAssets(repo.owner.login, repo.name, filters.platforms)
+                        if (hasInstallable) {
+                            val release = repository.getLatestRelease(repo.owner.login, repo.name).getOrNull()
+                            val tag = repository.determineTag(repo, release)
+                            appItems.add(AppItem(repo, release, tag))
+                        }
+                    } catch (e: Exception) {
+                        // Ignore individual repo errors
+                    }
                 }
-                _uiState.value = SearchUiState.Success(appItems)
+                if (appItems.isNotEmpty()) {
+                    _uiState.value = SearchUiState.Success(appItems)
+                }
             }
 
             // Then fetch from API with filters
@@ -150,10 +163,25 @@ class SearchViewModel(private val repository: GitHubRepository) : ViewModel() {
                     
                     _uiState.value = if (searchResult.items.isEmpty()) {
                         if (cachedResults.isNotEmpty()) {
-                            val appItems = cachedResults.map { repo ->
-                                AppItem(repo, null, null)
+                            // Filter cached results to only include those with installable assets
+                            val appItems = mutableListOf<AppItem>()
+                            for (repo in cachedResults) {
+                                try {
+                                    val hasInstallable = repository.repoHasInstallableAssets(repo.owner.login, repo.name, filters.platforms)
+                                    if (hasInstallable) {
+                                        val release = repository.getLatestRelease(repo.owner.login, repo.name).getOrNull()
+                                        val tag = repository.determineTag(repo, release)
+                                        appItems.add(AppItem(repo, release, tag))
+                                    }
+                                } catch (e: Exception) {
+                                    // Ignore individual repo errors
+                                }
                             }
-                            SearchUiState.Success(appItems)
+                            if (appItems.isNotEmpty()) {
+                                SearchUiState.Success(appItems)
+                            } else {
+                                SearchUiState.Empty
+                            }
                         } else {
                             SearchUiState.Empty
                         }
@@ -163,10 +191,25 @@ class SearchViewModel(private val repository: GitHubRepository) : ViewModel() {
                 },
                 onFailure = { error ->
                     if (cachedResults.isNotEmpty()) {
-                        val appItems = cachedResults.map { repo ->
-                            AppItem(repo, null, null)
+                        // Filter cached results to only include those with installable assets
+                        val appItems = mutableListOf<AppItem>()
+                        for (repo in cachedResults) {
+                            try {
+                                val hasInstallable = repository.repoHasInstallableAssets(repo.owner.login, repo.name, filters.platforms)
+                                if (hasInstallable) {
+                                    val release = repository.getLatestRelease(repo.owner.login, repo.name).getOrNull()
+                                    val tag = repository.determineTag(repo, release)
+                                    appItems.add(AppItem(repo, release, tag))
+                                }
+                            } catch (e: Exception) {
+                                // Ignore individual repo errors
+                            }
                         }
-                        _uiState.value = SearchUiState.Success(appItems)
+                        if (appItems.isNotEmpty()) {
+                            _uiState.value = SearchUiState.Success(appItems)
+                        } else {
+                            _uiState.value = SearchUiState.Error(error.message ?: "Search failed")
+                        }
                     } else {
                         _uiState.value = SearchUiState.Error(error.message ?: "Search failed")
                     }
