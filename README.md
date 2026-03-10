@@ -80,5 +80,33 @@
 
 - **作者**：八月琪
 - **仓库**：[https://github.com/bayueqi/zq-store](https://github.com/bayueqi/zq-store)
-- **版本**：1.0.1
+- **版本**：1.0.2
+
+## GitHub Client ID 配置
+
+为了使用GitHub API进行授权和搜索，需要配置GitHub Client ID：
+
+### 本地开发配置
+1. 在项目根目录创建 `local.properties` 文件
+2. 添加以下内容：
+   ```
+   GITHUB_CLIENT_ID=你的GitHub OAuth应用Client ID
+   ```
+
+### GitHub Actions 配置
+1. 登录GitHub仓库
+2. 进入 "Settings" -> "Secrets and variables" -> "Actions"
+3. 点击 "New repository secret"
+4. 名称填写 `APP_GITHUB_CLIENT_ID`
+5. 值填写你的GitHub OAuth应用Client ID
+
+### 创建GitHub OAuth应用
+1. 访问 https://github.com/settings/developers
+2. 点击 "New OAuth App"
+3. 填写应用名称（例如你的应用名称）
+4. 填写 Homepage URL（可以是 `http://localhost`）
+5. 填写 Authorization callback URL（可以是 `http://localhost`）
+6. 上传你自己的应用图标
+7. 点击 "Register application"
+8. 复制生成的Client ID用于配置
 
