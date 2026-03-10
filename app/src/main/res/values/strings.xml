@@ -183,6 +183,9 @@
     <!-- 下载设置 -->
     <string name="download_settings">下载设置</string>
     <string name="proxy">代理</string>
+    <string name="proxy_settings">代理设置</string>
+    <string name="proxy_none">无代理</string>
+    <string name="proxy_system">系统代理</string>
     <string name="mirror_proxy_description">对于GitHub被封锁的国家或地区，使用代理进行下载。</string>
     <string name="enable_mirror_proxy">启用镜像代理</string>
     <string name="proxy_url_hint">代理URL（例如：https://gh-proxy.com/）</string>

@@ -85,30 +85,55 @@ enum class AppCategory(val displayName: String, val queries: List<String>) {
     ALL("推荐", listOf(
         "android app topic:android stars:>100",
         "android application topic:android stars:>50",
-        "安卓 stars:>50",
+        "android open source stars:>100",
+        "安卓应用 stars:>50",
+        "Android 应用 stars:>50",
+        "中文安卓应用 stars:>50",
+        "热门安卓应用 stars:>50"
     )),
     GAMES("游戏", listOf(
         "android game stars:>50",
+        "android gaming stars:>50",
         "topic:android-game stars:>30",
-        "游戏 stars:>50",
+        "android game engine stars:>50",
+        "安卓游戏 stars:>50",
+        "Android 游戏 stars:>50",
+        "中文游戏 stars:>50",
+        "热门游戏 stars:>50",
+        "安卓手游 stars:>50"
     )),
     VIDEO("视频", listOf(
         "android video player stars:>50",
+        "android video editor stars:>30",
         "topic:android-video stars:>30",
-        "视频 stars:>50",
-        "番剧 stars:>50",
+        "android media player stars:>50",
+        "安卓视频播放 stars:>50",
+        "Android 视频 stars:>50",
+        "安卓番剧 stars:>50",
+        "安卓动漫 stars:>50",
+        "热门视频播放 stars:>50",
+        "安卓视频播放 stars:>50"
     )),
     MUSIC("音乐", listOf(
         "android music player stars:>50",
+        "android audio player stars:>30",
         "topic:android-music stars:>30",
-        "音乐 stars:>50",
-        "音乐播放器 stars:>50"
+        "android music streaming stars:>50",
+        "安卓音乐播放 stars:>50",
+        "Android 音乐 stars:>50",
+        "安卓音乐播放 stars:>50",
+        "安卓音频播放 stars:>50",
+        "热门音乐 app stars:>50"
     )),
     TOOLS("工具", listOf(
         "android tools stars:>50",
         "android utility stars:>50",
         "android productivity stars:>50",
-        "工具 stars:>50",
+        "安卓工具 stars:>50",
+        "Android 工具 stars:>50",
+        "中文工具 stars:>50",
+        "热门工具 stars:>50",
+        "安卓实用工具 stars:>50"
     ));
 
     // For backward compatibility
