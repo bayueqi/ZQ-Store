@@ -94,14 +94,17 @@ enum class AppCategory(val displayName: String, val queries: List<String>) {
     VIDEO("视频", listOf(
         "android video player stars:>50",
         "视频 stars:>30",
+        "video stars:>30",
         "topic:android-video stars:>30"
     )),
     MUSIC("音乐", listOf(
-        "andorid music player stars:>50",
+        "android music player stars:>50",
         "音乐 stars:>30",
+        "music stars:>30",
         "topic:android-music stars:>30"
     )),
     TOOLS("工具", listOf(
+        "android tools stars:>50",
         "android productivity stars:>50",
         "工具 stars:>50"
     ));
