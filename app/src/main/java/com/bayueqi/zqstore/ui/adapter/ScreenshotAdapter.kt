@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.adapter
+package com.bayueqi.zqstore.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.databinding.ItemScreenshotBinding
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.databinding.ItemScreenshotBinding
 
 class ScreenshotAdapter(
     private val onScreenshotClick: (String, Int) -> Unit
@@ -53,4 +53,5 @@ class ScreenshotAdapter(
         override fun areContentsTheSame(oldItem: String, newItem: String) = oldItem == newItem
     }
 }
+
 

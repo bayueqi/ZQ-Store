@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.activity
+package com.bayueqi.zqstore.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -7,9 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.databinding.ActivitySettingsBinding
-import com\.bayueqi\.zqstore.ui.fragment.SettingsFragment
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.databinding.ActivitySettingsBinding
+import com.bayueqi.zqstore.ui.fragment.SettingsFragment
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -49,4 +49,5 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 }
+
 

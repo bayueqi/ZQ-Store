@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.adapter
+package com.bayueqi.zqstore.ui.adapter
 
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.databinding.ItemScreenshotFullscreenBinding
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.databinding.ItemScreenshotFullscreenBinding
 
 class ScreenshotPagerAdapter(
     private val screenshots: List<String>,
@@ -76,4 +76,5 @@ class ScreenshotPagerAdapter(
         }
     }
 }
+
 

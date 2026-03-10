@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.activity
+package com.bayueqi.zqstore.ui.activity
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -13,9 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.data.auth.GitHubAuth
-import com\.bayueqi\.zqstore.databinding.ActivityGithubSignInBinding
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.data.auth.GitHubAuth
+import com.bayueqi.zqstore.databinding.ActivityGithubSignInBinding
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -211,4 +211,5 @@ class GitHubSignInActivity : AppCompatActivity() {
         }
     }
 }
+
 

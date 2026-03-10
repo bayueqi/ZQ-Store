@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.fragment
+package com.bayueqi.zqstore.ui.fragment
 
 import android.content.Intent
 import android.content.res.ColorStateList
@@ -11,19 +11,19 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.card.MaterialCardView
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.data.api.RetrofitClient
-import com\.bayueqi\.zqstore.data.auth.GitHubAuth
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.data.api.RetrofitClient
+import com.bayueqi.zqstore.data.auth.GitHubAuth
 
-import com\.bayueqi\.zqstore.databinding.FragmentSettingsBinding
+import com.bayueqi.zqstore.databinding.FragmentSettingsBinding
 
 
 
-import com\.bayueqi\.zqstore.ui.activity.GitHubSignInActivity
+import com.bayueqi.zqstore.ui.activity.GitHubSignInActivity
 
-import com\.bayueqi\.zqstore.ui.activity.FavoriteActivity
-import com\.bayueqi\.zqstore.ui.activity.MyAppsActivity
-import com\.bayueqi\.zqstore.ui.activity.DownloadSettingsActivity
+import com.bayueqi.zqstore.ui.activity.FavoriteActivity
+import com.bayueqi.zqstore.ui.activity.MyAppsActivity
+import com.bayueqi.zqstore.ui.activity.DownloadSettingsActivity
 
 
 class SettingsFragment : Fragment() {
@@ -124,4 +124,5 @@ class SettingsFragment : Fragment() {
         fun newInstance() = SettingsFragment()
     }
 }
+
 

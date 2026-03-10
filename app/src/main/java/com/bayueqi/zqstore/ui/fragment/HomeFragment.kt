@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.fragment
+package com.bayueqi.zqstore.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,24 +14,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com\.bayueqi\.zqstore.ui.widget.ShimmerFrameLayout
+import com.bayueqi.zqstore.ui.widget.ShimmerFrameLayout
 import com.google.android.material.tabs.TabLayout
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.RepoStoreApp
-import com\.bayueqi\.zqstore.data.model.AppCategory
-import com\.bayueqi\.zqstore.data.model.AppItem
-import com\.bayueqi\.zqstore.databinding.FragmentHomeBinding
-import com\.bayueqi\.zqstore.databinding.SectionAppCarouselBinding
-import com\.bayueqi\.zqstore.databinding.SectionAppListBinding
-import com\.bayueqi\.zqstore.ui.activity.AppListActivity
-import com\.bayueqi\.zqstore.ui.activity.DetailActivity
-import com\.bayueqi\.zqstore.ui.adapter.FeaturedAppAdapter
-import com\.bayueqi\.zqstore.ui.adapter.PlayStoreAppAdapter
-import com\.bayueqi\.zqstore.ui.viewmodel.HomeUiState
-import com\.bayueqi\.zqstore.ui.viewmodel.HomeViewModel
-import com\.bayueqi\.zqstore.ui.viewmodel.HomeViewModelFactory
-import com\.bayueqi\.zqstore.ui.viewmodel.ListType
-import com\.bayueqi\.zqstore.util.RateLimitDialog
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.RepoStoreApp
+import com.bayueqi.zqstore.data.model.AppCategory
+import com.bayueqi.zqstore.data.model.AppItem
+import com.bayueqi.zqstore.databinding.FragmentHomeBinding
+import com.bayueqi.zqstore.databinding.SectionAppCarouselBinding
+import com.bayueqi.zqstore.databinding.SectionAppListBinding
+import com.bayueqi.zqstore.ui.activity.AppListActivity
+import com.bayueqi.zqstore.ui.activity.DetailActivity
+import com.bayueqi.zqstore.ui.adapter.FeaturedAppAdapter
+import com.bayueqi.zqstore.ui.adapter.PlayStoreAppAdapter
+import com.bayueqi.zqstore.ui.viewmodel.HomeUiState
+import com.bayueqi.zqstore.ui.viewmodel.HomeViewModel
+import com.bayueqi.zqstore.ui.viewmodel.HomeViewModelFactory
+import com.bayueqi.zqstore.ui.viewmodel.ListType
+import com.bayueqi.zqstore.util.RateLimitDialog
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 
@@ -333,4 +333,5 @@ class HomeFragment : Fragment() {
         fun newInstance() = HomeFragment()
     }
 }
+
 

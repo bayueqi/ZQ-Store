@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.activity
+package com.bayueqi.zqstore.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -13,13 +13,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com\.bayueqi\.zqstore.RepoStoreApp
-import com\.bayueqi\.zqstore.databinding.ActivityMyAppsBinding
-import com\.bayueqi\.zqstore.ui.adapter.FavoriteAppAdapter
-import com\.bayueqi\.zqstore.ui.viewmodel.MyAppsUiState
-import com\.bayueqi\.zqstore.ui.viewmodel.MyAppsViewModel
-import com\.bayueqi\.zqstore.ui.viewmodel.MyAppsViewModelFactory
-import com\.bayueqi\.zqstore.ui.widget.ShimmerFrameLayout
+import com.bayueqi.zqstore.RepoStoreApp
+import com.bayueqi.zqstore.databinding.ActivityMyAppsBinding
+import com.bayueqi.zqstore.ui.adapter.FavoriteAppAdapter
+import com.bayueqi.zqstore.ui.viewmodel.MyAppsUiState
+import com.bayueqi.zqstore.ui.viewmodel.MyAppsViewModel
+import com.bayueqi.zqstore.ui.viewmodel.MyAppsViewModelFactory
+import com.bayueqi.zqstore.ui.widget.ShimmerFrameLayout
 import kotlinx.coroutines.launch
 
 class MyAppsActivity : AppCompatActivity() {
@@ -158,4 +158,5 @@ class MyAppsActivity : AppCompatActivity() {
         }
     }
 }
+
 

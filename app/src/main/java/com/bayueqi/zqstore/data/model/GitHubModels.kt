@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.data.model
+package com.bayueqi.zqstore.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -158,4 +158,5 @@ data class GitHubUser(
     val following: Int,
     @SerializedName("created_at") val createdAt: String
 )
+
 

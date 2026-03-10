@@ -1,10 +1,10 @@
-package com\.bayueqi\.zqstore.data.db
+package com.bayueqi.zqstore.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com\.bayueqi\.zqstore.data.model.GitHubRepo
+import com.bayueqi.zqstore.data.model.GitHubRepo
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -31,4 +31,5 @@ interface RepoDao {
     @Query("SELECT * FROM repositories WHERE name LIKE '%' || :query || '%' OR description LIKE '%' || :query || '%' ORDER BY stars DESC")
     fun searchRepos(query: String): Flow<List<GitHubRepo>>
 }
+
 

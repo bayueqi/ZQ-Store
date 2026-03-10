@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.data.model
+package com.bayueqi.zqstore.data.model
 
 /**
  * Platform options for filtering apps
@@ -126,4 +126,5 @@ enum class UpdatedWithin(val displayName: String, private val daysAgo: Int?) {
         return "pushed:>=${sdf.format(calendar.time)}"
     }
 }
+
 

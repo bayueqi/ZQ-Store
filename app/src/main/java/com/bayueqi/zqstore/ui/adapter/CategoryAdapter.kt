@@ -1,11 +1,11 @@
-package com\.bayueqi\.zqstore.ui.adapter
+package com.bayueqi.zqstore.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.data.model.AppCategory
-import com\.bayueqi\.zqstore.databinding.ItemCategoryChipBinding
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.data.model.AppCategory
+import com.bayueqi.zqstore.databinding.ItemCategoryChipBinding
 
 class CategoryAdapter(
     private val onCategorySelected: (AppCategory) -> Unit
@@ -58,4 +58,5 @@ class CategoryAdapter(
         }
     }
 }
+
 

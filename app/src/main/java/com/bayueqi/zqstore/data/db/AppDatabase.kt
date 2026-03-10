@@ -1,13 +1,13 @@
-package com\.bayueqi\.zqstore.data.db
+package com.bayueqi.zqstore.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com\.bayueqi\.zqstore.data.model.FavoriteApp
-import com\.bayueqi\.zqstore.data.model.GitHubRepo
-import com\.bayueqi\.zqstore.data.model.InstalledAppMapping
+import com.bayueqi.zqstore.data.model.FavoriteApp
+import com.bayueqi.zqstore.data.model.GitHubRepo
+import com.bayueqi.zqstore.data.model.InstalledAppMapping
 
 @Database(entities = [GitHubRepo::class, FavoriteApp::class, InstalledAppMapping::class], version = 4, exportSchema = false)
 @TypeConverters(Converters::class)
@@ -36,4 +36,5 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+
 

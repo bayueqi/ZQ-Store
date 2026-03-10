@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.activity
+package com.bayueqi.zqstore.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -10,9 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.databinding.ActivityScreenshotViewerBinding
-import com\.bayueqi\.zqstore.ui.adapter.ScreenshotPagerAdapter
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.databinding.ActivityScreenshotViewerBinding
+import com.bayueqi.zqstore.ui.adapter.ScreenshotPagerAdapter
 
 class ScreenshotViewerActivity : AppCompatActivity() {
 
@@ -103,4 +103,5 @@ class ScreenshotViewerActivity : AppCompatActivity() {
         }
     }
 }
+
 

@@ -1,11 +1,11 @@
-package com\.bayueqi\.zqstore.ui.viewmodel
+package com.bayueqi.zqstore.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com\.bayueqi\.zqstore.data.model.GitHubRelease
-import com\.bayueqi\.zqstore.data.model.GitHubRepo
-import com\.bayueqi\.zqstore.data.repository.GitHubRepository
+import com.bayueqi.zqstore.data.model.GitHubRelease
+import com.bayueqi.zqstore.data.model.GitHubRepo
+import com.bayueqi.zqstore.data.repository.GitHubRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -96,4 +96,5 @@ class DetailViewModelFactory(private val repository: GitHubRepository) : ViewMod
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
+
 

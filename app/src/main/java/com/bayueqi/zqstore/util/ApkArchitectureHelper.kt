@@ -1,7 +1,7 @@
-package com\.bayueqi\.zqstore.util
+package com.bayueqi.zqstore.util
 
 import android.os.Build
-import com\.bayueqi\.zqstore.data.model.ReleaseAsset
+import com.bayueqi.zqstore.data.model.ReleaseAsset
 
 /**
  * Helper for selecting the best APK based on device CPU architecture.
@@ -159,4 +159,5 @@ sealed class ApkSelectionResult {
     data class Universal(val asset: ReleaseAsset) : ApkSelectionResult()
     data class Fallback(val asset: ReleaseAsset) : ApkSelectionResult()
 }
+
 

@@ -1,14 +1,14 @@
-package com\.bayueqi\.zqstore
+package com.bayueqi.zqstore
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com\.bayueqi\.zqstore.databinding.ActivityMainBinding
-import com\.bayueqi\.zqstore.ui.fragment.HomeFragment
-import com\.bayueqi\.zqstore.ui.fragment.SettingsFragment
-import com\.bayueqi\.zqstore.ui.fragment.AboutFragment
+import com.bayueqi.zqstore.databinding.ActivityMainBinding
+import com.bayueqi.zqstore.ui.fragment.HomeFragment
+import com.bayueqi.zqstore.ui.fragment.SettingsFragment
+import com.bayueqi.zqstore.ui.fragment.AboutFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -60,4 +60,5 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 }
+
 

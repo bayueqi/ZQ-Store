@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.activity
+package com.bayueqi.zqstore.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -14,16 +14,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com\.bayueqi\.zqstore.ui.widget.ShimmerFrameLayout
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.RepoStoreApp
-import com\.bayueqi\.zqstore.databinding.ActivityAppListBinding
-import com\.bayueqi\.zqstore.ui.adapter.RankedAppAdapter
-import com\.bayueqi\.zqstore.ui.viewmodel.AppListViewModel
-import com\.bayueqi\.zqstore.ui.viewmodel.AppListViewModelFactory
-import com\.bayueqi\.zqstore.ui.viewmodel.ListType
-import com\.bayueqi\.zqstore.ui.viewmodel.AppListUiState
-import com\.bayueqi\.zqstore.util.RateLimitDialog
+import com.bayueqi.zqstore.ui.widget.ShimmerFrameLayout
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.RepoStoreApp
+import com.bayueqi.zqstore.databinding.ActivityAppListBinding
+import com.bayueqi.zqstore.ui.adapter.RankedAppAdapter
+import com.bayueqi.zqstore.ui.viewmodel.AppListViewModel
+import com.bayueqi.zqstore.ui.viewmodel.AppListViewModelFactory
+import com.bayueqi.zqstore.ui.viewmodel.ListType
+import com.bayueqi.zqstore.ui.viewmodel.AppListUiState
+import com.bayueqi.zqstore.util.RateLimitDialog
 import kotlinx.coroutines.launch
 
 class AppListActivity : AppCompatActivity() {
@@ -204,4 +204,5 @@ class AppListActivity : AppCompatActivity() {
         }
     }
 }
+
 

@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.fragment
+package com.bayueqi.zqstore.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,22 +17,22 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com\.bayueqi\.zqstore.ui.widget.ShimmerFrameLayout
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.RepoStoreApp
-import com\.bayueqi\.zqstore.data.model.AppItem
-import com\.bayueqi\.zqstore.data.model.SearchFilters
-import com\.bayueqi\.zqstore.data.model.SortOption
-import com\.bayueqi\.zqstore.data.model.UpdatedWithin
-import com\.bayueqi\.zqstore.data.model.Platform
-import com\.bayueqi\.zqstore.databinding.FragmentSearchBinding
-import com\.bayueqi\.zqstore.ui.activity.DetailActivity
-import com\.bayueqi\.zqstore.ui.activity.DeveloperActivity
-import com\.bayueqi\.zqstore.ui.adapter.RankedAppAdapter
-import com\.bayueqi\.zqstore.ui.viewmodel.SearchUiState
-import com\.bayueqi\.zqstore.ui.viewmodel.SearchViewModel
-import com\.bayueqi\.zqstore.ui.viewmodel.SearchViewModelFactory
-import com\.bayueqi\.zqstore.util.RateLimitDialog
+import com.bayueqi.zqstore.ui.widget.ShimmerFrameLayout
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.RepoStoreApp
+import com.bayueqi.zqstore.data.model.AppItem
+import com.bayueqi.zqstore.data.model.SearchFilters
+import com.bayueqi.zqstore.data.model.SortOption
+import com.bayueqi.zqstore.data.model.UpdatedWithin
+import com.bayueqi.zqstore.data.model.Platform
+import com.bayueqi.zqstore.databinding.FragmentSearchBinding
+import com.bayueqi.zqstore.ui.activity.DetailActivity
+import com.bayueqi.zqstore.ui.activity.DeveloperActivity
+import com.bayueqi.zqstore.ui.adapter.RankedAppAdapter
+import com.bayueqi.zqstore.ui.viewmodel.SearchUiState
+import com.bayueqi.zqstore.ui.viewmodel.SearchViewModel
+import com.bayueqi.zqstore.ui.viewmodel.SearchViewModelFactory
+import com.bayueqi.zqstore.util.RateLimitDialog
 import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
@@ -436,4 +436,5 @@ class SearchFragment : Fragment() {
         fun newInstance() = SearchFragment()
     }
 }
+
 

@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.activity
+package com.bayueqi.zqstore.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -16,14 +16,14 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.RepoStoreApp
-import com\.bayueqi\.zqstore.databinding.ActivityDeveloperBinding
-import com\.bayueqi\.zqstore.ui.adapter.RankedAppAdapter
-import com\.bayueqi\.zqstore.ui.viewmodel.DeveloperUiState
-import com\.bayueqi\.zqstore.ui.viewmodel.DeveloperViewModel
-import com\.bayueqi\.zqstore.ui.viewmodel.DeveloperViewModelFactory
-import com\.bayueqi\.zqstore.util.RateLimitDialog
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.RepoStoreApp
+import com.bayueqi.zqstore.databinding.ActivityDeveloperBinding
+import com.bayueqi.zqstore.ui.adapter.RankedAppAdapter
+import com.bayueqi.zqstore.ui.viewmodel.DeveloperUiState
+import com.bayueqi.zqstore.ui.viewmodel.DeveloperViewModel
+import com.bayueqi.zqstore.ui.viewmodel.DeveloperViewModelFactory
+import com.bayueqi.zqstore.util.RateLimitDialog
 import kotlinx.coroutines.launch
 
 class DeveloperActivity : AppCompatActivity() {
@@ -200,4 +200,5 @@ class DeveloperActivity : AppCompatActivity() {
         }
     }
 }
+
 

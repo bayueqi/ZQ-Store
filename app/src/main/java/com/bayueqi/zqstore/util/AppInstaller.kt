@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.util
+package com.bayueqi.zqstore.util
 
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
@@ -15,9 +15,9 @@ import android.os.Looper
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com\.bayueqi\.zqstore.data.prefs.DownloadPreferences
-import com\.bayueqi\.zqstore.RepoStoreApp
-import com\.bayueqi\.zqstore.data.model.InstalledAppMapping
+import com.bayueqi.zqstore.data.prefs.DownloadPreferences
+import com.bayueqi.zqstore.RepoStoreApp
+import com.bayueqi.zqstore.data.model.InstalledAppMapping
 import kotlinx.coroutines.*
 import java.io.File
 
@@ -818,4 +818,5 @@ class AppInstaller private constructor(private val context: Context) {
         }
     }
 }
+
 

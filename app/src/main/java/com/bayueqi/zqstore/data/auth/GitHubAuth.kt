@@ -1,10 +1,10 @@
-package com\.bayueqi\.zqstore.data.auth
+package com.bayueqi.zqstore.data.auth
 
 import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
-import com\.bayueqi\.zqstore.BuildConfig
+import com.bayueqi.zqstore.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -222,4 +222,5 @@ object GitHubAuth {
         SecureTokenStorage.signOut(context)
     }
 }
+
 

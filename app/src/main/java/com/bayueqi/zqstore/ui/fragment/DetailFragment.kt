@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.fragment
+package com.bayueqi.zqstore.ui.fragment
 
 import android.content.Intent
 import android.net.Uri
@@ -14,24 +14,24 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.RepoStoreApp
-import com\.bayueqi\.zqstore.data.model.GitHubRelease
-import com\.bayueqi\.zqstore.data.model.GitHubRepo
-import com\.bayueqi\.zqstore.databinding.FragmentDetailBinding
-import com\.bayueqi\.zqstore.ui.activity.DeveloperActivity
-import com\.bayueqi\.zqstore.ui.activity.ScreenshotViewerActivity
-import com\.bayueqi\.zqstore.ui.adapter.ScreenshotAdapter
-import com\.bayueqi\.zqstore.ui.viewmodel.DetailUiState
-import com\.bayueqi\.zqstore.ui.viewmodel.DetailViewModel
-import com\.bayueqi\.zqstore.ui.viewmodel.DetailViewModelFactory
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.RepoStoreApp
+import com.bayueqi.zqstore.data.model.GitHubRelease
+import com.bayueqi.zqstore.data.model.GitHubRepo
+import com.bayueqi.zqstore.databinding.FragmentDetailBinding
+import com.bayueqi.zqstore.ui.activity.DeveloperActivity
+import com.bayueqi.zqstore.ui.activity.ScreenshotViewerActivity
+import com.bayueqi.zqstore.ui.adapter.ScreenshotAdapter
+import com.bayueqi.zqstore.ui.viewmodel.DetailUiState
+import com.bayueqi.zqstore.ui.viewmodel.DetailViewModel
+import com.bayueqi.zqstore.ui.viewmodel.DetailViewModelFactory
 import io.noties.markwon.Markwon
 import io.noties.markwon.ext.strikethrough.StrikethroughPlugin
 import io.noties.markwon.ext.tables.TablePlugin
 import io.noties.markwon.html.HtmlPlugin
 import io.noties.markwon.image.glide.GlideImagesPlugin
 import io.noties.markwon.linkify.LinkifyPlugin
-import com\.bayueqi\.zqstore.util.RateLimitDialog
+import com.bayueqi.zqstore.util.RateLimitDialog
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -318,4 +318,5 @@ class DetailFragment : Fragment() {
         }
     }
 }
+
 

@@ -1,11 +1,11 @@
-package com\.bayueqi\.zqstore.data.api
+package com.bayueqi.zqstore.data.api
 
-import com\.bayueqi\.zqstore.data.model.GitHubContent
-import com\.bayueqi\.zqstore.data.model.GitHubRelease
-import com\.bayueqi\.zqstore.data.model.GitHubRepo
-import com\.bayueqi\.zqstore.data.model.GitHubSearchResponse
-import com\.bayueqi\.zqstore.data.model.GitHubUser
-import com\.bayueqi\.zqstore.data.model.ReadmeResponse
+import com.bayueqi.zqstore.data.model.GitHubContent
+import com.bayueqi.zqstore.data.model.GitHubRelease
+import com.bayueqi.zqstore.data.model.GitHubRepo
+import com.bayueqi.zqstore.data.model.GitHubSearchResponse
+import com.bayueqi.zqstore.data.model.GitHubUser
+import com.bayueqi.zqstore.data.model.ReadmeResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -74,4 +74,5 @@ interface GitHubApi {
         @Path("username") username: String
     ): GitHubUser
 }
+
 

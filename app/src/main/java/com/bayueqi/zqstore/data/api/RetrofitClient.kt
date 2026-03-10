@@ -1,7 +1,7 @@
-package com\.bayueqi\.zqstore.data.api
+package com.bayueqi.zqstore.data.api
 
 import android.content.Context
-import com\.bayueqi\.zqstore.data.auth.GitHubAuth
+import com.bayueqi.zqstore.data.auth.GitHubAuth
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.OkHttpClient
@@ -150,4 +150,5 @@ object RetrofitClient {
         rebuildClient()
     }
 }
+
 

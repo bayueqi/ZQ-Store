@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.adapter
+package com.bayueqi.zqstore.ui.adapter
 
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
@@ -13,10 +13,10 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.data.model.AppItem
-import com\.bayueqi\.zqstore.data.model.AppTag
-import com\.bayueqi\.zqstore.databinding.ItemFeaturedAppBinding
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.data.model.AppItem
+import com.bayueqi.zqstore.data.model.AppTag
+import com.bayueqi.zqstore.databinding.ItemFeaturedAppBinding
 import java.util.Locale
 
 class FeaturedAppAdapter(
@@ -199,4 +199,5 @@ class FeaturedAppAdapter(
             oldItem == newItem
     }
 }
+
 

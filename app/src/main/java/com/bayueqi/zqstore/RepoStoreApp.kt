@@ -1,11 +1,11 @@
-package com\.bayueqi\.zqstore
+package com.bayueqi.zqstore
 
 import android.app.Application
-import com\.bayueqi\.zqstore.data.api.RetrofitClient
-import com\.bayueqi\.zqstore.data.auth.GitHubAuth
-import com\.bayueqi\.zqstore.data.auth.SecureTokenStorage
-import com\.bayueqi\.zqstore.data.db.AppDatabase
-import com\.bayueqi\.zqstore.data.repository.GitHubRepository
+import com.bayueqi.zqstore.data.api.RetrofitClient
+import com.bayueqi.zqstore.data.auth.GitHubAuth
+import com.bayueqi.zqstore.data.auth.SecureTokenStorage
+import com.bayueqi.zqstore.data.db.AppDatabase
+import com.bayueqi.zqstore.data.repository.GitHubRepository
 
 class RepoStoreApp : Application() {
 
@@ -54,4 +54,5 @@ class RepoStoreApp : Application() {
         RetrofitClient.refreshAuth()
     }
 }
+
 

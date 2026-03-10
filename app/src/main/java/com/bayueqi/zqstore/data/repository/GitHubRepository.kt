@@ -1,8 +1,8 @@
-package com\.bayueqi\.zqstore.data.repository
+package com.bayueqi.zqstore.data.repository
 
-import com\.bayueqi\.zqstore.data.api.RetrofitClient
-import com\.bayueqi\.zqstore.data.db.RepoDao
-import com\.bayueqi\.zqstore.data.model.*
+import com.bayueqi.zqstore.data.api.RetrofitClient
+import com.bayueqi.zqstore.data.db.RepoDao
+import com.bayueqi.zqstore.data.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -672,4 +672,5 @@ class GitHubRepository(private val repoDao: RepoDao) {
         lastFetchTime = 0L
     }
 }
+
 

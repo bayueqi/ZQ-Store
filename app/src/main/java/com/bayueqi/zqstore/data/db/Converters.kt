@@ -1,9 +1,9 @@
-package com\.bayueqi\.zqstore.data.db
+package com.bayueqi.zqstore.data.db
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com\.bayueqi\.zqstore.data.model.GitHubRepo
+import com.bayueqi.zqstore.data.model.GitHubRepo
 
 class Converters {
     
@@ -32,4 +32,5 @@ class Converters {
         }
     }
 }
+
 

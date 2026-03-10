@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.util
+package com.bayueqi.zqstore.util
 
 /**
  * Utility for comparing version strings from GitHub releases with installed app versions.
@@ -81,4 +81,5 @@ object VersionComparator {
         return normalized
     }
 }
+
 

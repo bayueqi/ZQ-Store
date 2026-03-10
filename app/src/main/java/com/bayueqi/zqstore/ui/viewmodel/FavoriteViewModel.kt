@@ -1,10 +1,10 @@
-package com\.bayueqi\.zqstore.ui.viewmodel
+package com.bayueqi.zqstore.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com\.bayueqi\.zqstore.data.db.FavoriteAppDao
-import com\.bayueqi\.zqstore.data.model.FavoriteApp
+import com.bayueqi.zqstore.data.db.FavoriteAppDao
+import com.bayueqi.zqstore.data.model.FavoriteApp
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -53,4 +53,5 @@ class FavoriteViewModelFactory(
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
+
 

@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.data.auth
+package com.bayueqi.zqstore.data.auth
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -246,4 +246,5 @@ object SecureTokenStorage {
         }
     }
 }
+
 

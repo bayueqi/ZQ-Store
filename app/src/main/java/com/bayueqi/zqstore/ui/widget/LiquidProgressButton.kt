@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.widget
+package com.bayueqi.zqstore.ui.widget
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
-import com\.bayueqi\.zqstore.R
+import com.bayueqi.zqstore.R
 import kotlin.math.sin
 
 /**
@@ -170,4 +170,5 @@ class LiquidProgressButton @JvmOverloads constructor(
         waveAnimator?.cancel()
     }
 }
+
 

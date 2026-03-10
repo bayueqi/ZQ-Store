@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.activity
+package com.bayueqi.zqstore.ui.activity
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -20,24 +20,24 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.RepoStoreApp
-import com\.bayueqi\.zqstore.data.db.FavoriteAppDao
-import com\.bayueqi\.zqstore.data.model.FavoriteApp
-import com\.bayueqi\.zqstore.data.model.GitHubRelease
-import com\.bayueqi\.zqstore.data.model.GitHubRepo
-import com\.bayueqi\.zqstore.data.model.ReleaseAsset
-import com\.bayueqi\.zqstore.databinding.ActivityDetailBinding
-import com\.bayueqi\.zqstore.ui.adapter.ScreenshotAdapter
-import com\.bayueqi\.zqstore.ui.viewmodel.DetailUiState
-import com\.bayueqi\.zqstore.ui.viewmodel.DetailViewModel
-import com\.bayueqi\.zqstore.ui.viewmodel.DetailViewModelFactory
-import com\.bayueqi\.zqstore.util.AppInstaller
-import com\.bayueqi\.zqstore.util.ApkArchitectureHelper
-import com\.bayueqi\.zqstore.ui.widget.ShimmerFrameLayout
-import com\.bayueqi\.zqstore.util.ApkSelectionResult
-import com\.bayueqi\.zqstore.util.RateLimitDialog
-import com\.bayueqi\.zqstore.util.VersionComparator
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.RepoStoreApp
+import com.bayueqi.zqstore.data.db.FavoriteAppDao
+import com.bayueqi.zqstore.data.model.FavoriteApp
+import com.bayueqi.zqstore.data.model.GitHubRelease
+import com.bayueqi.zqstore.data.model.GitHubRepo
+import com.bayueqi.zqstore.data.model.ReleaseAsset
+import com.bayueqi.zqstore.databinding.ActivityDetailBinding
+import com.bayueqi.zqstore.ui.adapter.ScreenshotAdapter
+import com.bayueqi.zqstore.ui.viewmodel.DetailUiState
+import com.bayueqi.zqstore.ui.viewmodel.DetailViewModel
+import com.bayueqi.zqstore.ui.viewmodel.DetailViewModelFactory
+import com.bayueqi.zqstore.util.AppInstaller
+import com.bayueqi.zqstore.util.ApkArchitectureHelper
+import com.bayueqi.zqstore.ui.widget.ShimmerFrameLayout
+import com.bayueqi.zqstore.util.ApkSelectionResult
+import com.bayueqi.zqstore.util.RateLimitDialog
+import com.bayueqi.zqstore.util.VersionComparator
 import io.noties.markwon.Markwon
 import io.noties.markwon.ext.strikethrough.StrikethroughPlugin
 import io.noties.markwon.ext.tables.TablePlugin
@@ -571,4 +571,5 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 }
+
 

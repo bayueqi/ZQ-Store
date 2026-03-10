@@ -1,12 +1,12 @@
-package com\.bayueqi\.zqstore.util
+package com.bayueqi.zqstore.util
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.data.auth.GitHubAuth
-import com\.bayueqi\.zqstore.ui.activity.GitHubSignInActivity
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.data.auth.GitHubAuth
+import com.bayueqi.zqstore.ui.activity.GitHubSignInActivity
 
 /**
  * Utility for showing rate limit exceeded dialog with sign-in option.
@@ -103,4 +103,5 @@ object RateLimitDialog {
         }
     }
 }
+
 

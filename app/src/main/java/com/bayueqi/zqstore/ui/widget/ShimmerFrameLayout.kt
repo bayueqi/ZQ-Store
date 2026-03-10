@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.widget
+package com.bayueqi.zqstore.ui.widget
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -115,4 +115,5 @@ class ShimmerFrameLayout @JvmOverloads constructor(
         super.onDetachedFromWindow()
     }
 }
+
 

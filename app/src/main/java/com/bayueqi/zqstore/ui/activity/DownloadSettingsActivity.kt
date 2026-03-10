@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.activity
+package com.bayueqi.zqstore.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -10,9 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.data.prefs.DownloadPreferences
-import com\.bayueqi\.zqstore.databinding.ActivityDownloadSettingsBinding
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.data.prefs.DownloadPreferences
+import com.bayueqi.zqstore.databinding.ActivityDownloadSettingsBinding
 
 class DownloadSettingsActivity : AppCompatActivity() {
 
@@ -127,4 +127,5 @@ class DownloadSettingsActivity : AppCompatActivity() {
         }
     }
 }
+
 

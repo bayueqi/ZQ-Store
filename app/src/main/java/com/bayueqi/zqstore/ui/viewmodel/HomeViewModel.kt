@@ -1,11 +1,11 @@
-package com\.bayueqi\.zqstore.ui.viewmodel
+package com.bayueqi.zqstore.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com\.bayueqi\.zqstore.data.model.AppCategory
-import com\.bayueqi\.zqstore.data.model.AppItem
-import com\.bayueqi\.zqstore.data.repository.GitHubRepository
+import com.bayueqi.zqstore.data.model.AppCategory
+import com.bayueqi.zqstore.data.model.AppItem
+import com.bayueqi.zqstore.data.repository.GitHubRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -164,4 +164,5 @@ class HomeViewModelFactory(private val repository: GitHubRepository) : ViewModel
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
+
 

@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.data.model
+package com.bayueqi.zqstore.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -37,4 +37,5 @@ data class FavoriteApp(
         }
     }
 }
+
 

@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.fragment
+package com.bayueqi.zqstore.ui.fragment
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.databinding.FragmentAboutBinding
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.databinding.FragmentAboutBinding
 
 class AboutFragment : Fragment() {
 
@@ -74,4 +74,5 @@ class AboutFragment : Fragment() {
         fun newInstance() = AboutFragment()
     }
 }
+
 

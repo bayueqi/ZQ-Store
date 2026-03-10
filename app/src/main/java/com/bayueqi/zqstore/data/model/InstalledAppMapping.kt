@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.data.model
+package com.bayueqi.zqstore.data.model
 
 import androidx.room.Entity
 import androidx.room.Index
@@ -19,4 +19,5 @@ data class InstalledAppMapping(
     val packageName: String,
     val updatedAt: Long = System.currentTimeMillis()
 )
+
 

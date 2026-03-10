@@ -1,10 +1,10 @@
-package com\.bayueqi\.zqstore.data.db
+package com.bayueqi.zqstore.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com\.bayueqi\.zqstore.data.model.InstalledAppMapping
+import com.bayueqi.zqstore.data.model.InstalledAppMapping
 
 /**
  * DAO for InstalledAppMapping â€?stores the real package name
@@ -44,4 +44,5 @@ interface InstalledAppMappingDao {
     @Query("SELECT * FROM installed_app_mappings ORDER BY updatedAt DESC")
     suspend fun getAllMappings(): List<InstalledAppMapping>
 }
+
 

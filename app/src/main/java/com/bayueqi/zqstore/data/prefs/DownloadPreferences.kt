@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.data.prefs
+package com.bayueqi.zqstore.data.prefs
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -140,4 +140,5 @@ object DownloadPreferences {
         }
     }
 }
+
 

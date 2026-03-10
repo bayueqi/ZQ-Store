@@ -1,4 +1,4 @@
-package com\.bayueqi\.zqstore.ui.adapter
+package com.bayueqi.zqstore.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com\.bayueqi\.zqstore.R
-import com\.bayueqi\.zqstore.data.model.AppItem
-import com\.bayueqi\.zqstore.databinding.ItemAppPlaystoreBinding
+import com.bayueqi.zqstore.R
+import com.bayueqi.zqstore.data.model.AppItem
+import com.bayueqi.zqstore.databinding.ItemAppPlaystoreBinding
 import java.util.Locale
 
 class PlayStoreAppAdapter(
@@ -73,4 +73,5 @@ class PlayStoreAppAdapter(
             oldItem == newItem
     }
 }
+
 

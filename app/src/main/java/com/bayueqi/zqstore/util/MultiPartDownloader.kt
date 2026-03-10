@@ -1,9 +1,9 @@
-package com\.bayueqi\.zqstore.util
+package com.bayueqi.zqstore.util
 
 import android.content.Context
 import android.os.Environment
 import android.util.Log
-import com\.bayueqi\.zqstore.data.prefs.DownloadPreferences
+import com.bayueqi.zqstore.data.prefs.DownloadPreferences
 import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -356,4 +356,5 @@ class MultiPartDownloader(private val context: Context) {
         downloadJob?.cancel()
     }
 }
+
 
