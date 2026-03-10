@@ -1,4 +1,5 @@
 import java.util.Properties
+import org.gradle.api.GradleException
 
 plugins {
     alias(libs.plugins.android.application)
@@ -11,7 +12,7 @@ val localProps = Properties().apply {
     if (file.exists()) file.inputStream().use { this.load(it) }
 }
 // 优先从环境变量读取，然后从local.properties读取
-val localGithubClientId = (System.getenv("APP_GITHUB_CLIENT_ID") ?: localProps.getProperty("GITHUB_CLIENT_ID")).trim()
+val localGithubClientId = (System.getenv("APP_GITHUB_CLIENT_ID") ?: localProps.getProperty("GITHUB_CLIENT_ID") ?: "").trim()
 
 android {
     namespace = "com.samyak.repostore"
@@ -29,6 +30,9 @@ android {
         // GitHub OAuth Client ID
         // To use your own: Add GITHUB_CLIENT_ID=your_client_id to local.properties
         // Get your own at: https://github.com/settings/developers -> "New OAuth App"
+        if (localGithubClientId.isEmpty()) {
+            throw GradleException("GitHub Client ID is not set. Please set APP_GITHUB_CLIENT_ID environment variable or add GITHUB_CLIENT_ID to local.properties")
+        }
         buildConfigField("String", "GITHUB_CLIENT_ID", "\"${localGithubClientId}\"")
     }
 
