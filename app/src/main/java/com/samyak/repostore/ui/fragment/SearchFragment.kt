@@ -297,8 +297,8 @@ class SearchFragment : Fragment() {
         }
         binding.chipHasApk.isChecked = platforms.isNotEmpty()
         binding.chipHasApk.setChipIconResource(R.drawable.ic_platform)
-        binding.chipHasApk.isCheckedIconVisible = false
-        binding.chipHasApk.chipIconVisible = true
+        binding.chipHasApk.setCheckedIconVisible(false)
+        binding.chipHasApk.setChipIconVisible(true)
     }
 
     private fun updateChipStates(filters: SearchFilters) {
