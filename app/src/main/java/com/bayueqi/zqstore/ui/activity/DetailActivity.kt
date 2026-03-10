@@ -463,8 +463,11 @@ class DetailActivity : AppCompatActivity() {
         binding.btnCancel.visibility = View.VISIBLE
         binding.btnCancel.setOnClickListener {
             appInstaller.cancel()
-            // Hide cancel button
-            binding.btnCancel.visibility = View.GONE
+            // Only hide cancel button if we're not downloading
+            // This prevents the cancel button from disappearing when returning to the activity
+            if (!appInstaller.isDownloading()) {
+                binding.btnCancel.visibility = View.GONE
+            }
         }
         
         appInstaller.download(
@@ -527,8 +530,11 @@ class DetailActivity : AppCompatActivity() {
             Log.d(TAG, "setupInstallButton: repo='$repoName', owner='$ownerName', " +
                     "detectedPkg='$installedPackageName', isInstalled=$isInstalled")
 
-            // Hide cancel button
-            binding.btnCancel.visibility = View.GONE
+            // Only hide cancel button if we're not downloading
+            // This prevents the cancel button from disappearing when returning to the activity
+            if (!appInstaller.isDownloading()) {
+                binding.btnCancel.visibility = View.GONE
+            }
 
             if (isInstalled && installedPackageName != null) {
                 // Check if update is available

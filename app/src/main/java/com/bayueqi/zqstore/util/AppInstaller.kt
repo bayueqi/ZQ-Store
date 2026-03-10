@@ -481,6 +481,13 @@ class AppInstaller private constructor(private val context: Context) {
     }
 
     /**
+     * Check if download is in progress
+     */
+    fun isDownloading(): Boolean {
+        return isDownloading
+    }
+    
+    /**
      * Cancel current download
      */
     fun cancel() {
