@@ -62,9 +62,9 @@
 -keepattributes InnerClasses
 
 # Keep all classes that use Gson for serialization
--keep class com.samyak.repostore.data.** { *; }
--keep class com.samyak.repostore.data.model.** { <fields>; <init>(...); }
--keep class com.samyak.repostore.data.auth.** { <fields>; <init>(...); }
+-keep class com.bayueqi.zqstore.data.** { *; }
+-keep class com.bayueqi.zqstore.data.model.** { <fields>; <init>(...); }
+-keep class com.bayueqi.zqstore.data.auth.** { <fields>; <init>(...); }
 
 #======================================
 # Room
@@ -103,9 +103,9 @@
 #======================================
 # App Data Models (keep all fields for JSON serialization)
 #======================================
--keep class com.samyak.repostore.data.model.** { *; }
--keep class com.samyak.repostore.data.auth.GitHubAuth$** { *; }
--keepclassmembers class com.samyak.repostore.data.model.** { *; }
+-keep class com.bayueqi.zqstore.data.model.** { *; }
+-keep class com.bayueqi.zqstore.data.auth.GitHubAuth$** { *; }
+-keepclassmembers class com.bayueqi.zqstore.data.model.** { *; }
 
 #======================================
 # Security Crypto (EncryptedSharedPreferences)
