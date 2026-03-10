@@ -84,7 +84,7 @@ class MultiPartDownloader(private val context: Context) {
             val fileInfo = getFileInfo(downloadUrl)
             if (fileInfo == null) {
                 withContext(Dispatchers.Main) {
-                    onStateChanged(DownloadState.Error("Failed to get file info"))
+                    onStateChanged(DownloadState.Error("获取文件信息失败"))
                 }
                 return@withContext
             }
@@ -118,9 +118,9 @@ class MultiPartDownloader(private val context: Context) {
             Log.e(TAG, "Download error", e)
             // Handle network errors specifically
             val errorMessage = if (e.message?.contains("open failed") == true) {
-                "Network error: Failed to connect to server. Please check your proxy settings."
+                "网络错误：无法连接到服务器，请检查您的代理设置。"
             } else {
-                e.message ?: "Download failed"
+                e.message ?: "下载失败"
             }
             withContext(Dispatchers.Main) {
                 onStateChanged(DownloadState.Error(errorMessage))

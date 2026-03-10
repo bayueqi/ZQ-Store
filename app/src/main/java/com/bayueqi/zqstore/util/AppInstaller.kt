@@ -91,7 +91,7 @@ class AppInstaller private constructor(private val context: Context) {
         // Prevent multiple downloads
         if (isDownloading) {
             mainHandler.post {
-                onStateChanged(InstallState.Error("Download already in progress"))
+                onStateChanged(InstallState.Error("下载已在进行中"))
             }
             return
         }
@@ -159,7 +159,7 @@ class AppInstaller private constructor(private val context: Context) {
                                 if (installStarted) {
                                     onStateChanged(InstallState.Success)
                                 } else {
-                                    onStateChanged(InstallState.Error("Failed to start installation"))
+                                    onStateChanged(InstallState.Error("无法启动安装"))
                                 }
                                 cleanup()
                             }
@@ -173,7 +173,7 @@ class AppInstaller private constructor(private val context: Context) {
             } catch (e: Exception) {
                 Log.e(TAG, "Multi-part download error", e)
                 mainHandler.post {
-                    onStateChanged(InstallState.Error(e.message ?: "Download failed"))
+                    onStateChanged(InstallState.Error(e.message ?: "下载失败"))
                     cleanup()
                 }
             }
@@ -229,7 +229,7 @@ class AppInstaller private constructor(private val context: Context) {
             Log.e(TAG, "Download error", e)
             isDownloading = false
             mainHandler.post {
-                onStateChanged(InstallState.Error(e.message ?: "Download failed"))
+                onStateChanged(InstallState.Error(e.message ?: "下载失败"))
             }
         }
     }
@@ -299,7 +299,7 @@ class AppInstaller private constructor(private val context: Context) {
                                 if (installStarted) {
                                     onStateChanged(InstallState.Success)
                                 } else {
-                                    onStateChanged(InstallState.Error("Failed to start installation"))
+                                    onStateChanged(InstallState.Error("无法启动安装"))
                                 }
                                 cleanup()
                             }
@@ -312,14 +312,14 @@ class AppInstaller private constructor(private val context: Context) {
                                     if (installStarted) {
                                         onStateChanged(InstallState.Success)
                                     } else {
-                                        onStateChanged(InstallState.Error("Failed to start installation"))
+                                        onStateChanged(InstallState.Error("无法启动安装"))
                                     }
                                     cleanup()
                                 }
                             } else {
                                 Log.e(TAG, "Downloaded file not found: $fileName")
                                 mainHandler.post {
-                                    onStateChanged(InstallState.Error("Downloaded file not found"))
+                                    onStateChanged(InstallState.Error("未找到下载文件"))
                                     cleanup()
                                 }
                             }
@@ -328,7 +328,7 @@ class AppInstaller private constructor(private val context: Context) {
                     DownloadManager.STATUS_FAILED -> {
                         val reason = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON))
                         val errorMsg = getErrorMessage(reason)
-                        Log.e(TAG, "Download failed: $errorMsg")
+                        Log.e(TAG, "下载失败: $errorMsg")
                         mainHandler.post {
                             onStateChanged(InstallState.Error(errorMsg))
                             cleanup()
@@ -560,15 +560,15 @@ class AppInstaller private constructor(private val context: Context) {
 
     private fun getErrorMessage(reason: Int): String {
         return when (reason) {
-            DownloadManager.ERROR_CANNOT_RESUME -> "Cannot resume"
-            DownloadManager.ERROR_DEVICE_NOT_FOUND -> "Storage not found"
-            DownloadManager.ERROR_FILE_ALREADY_EXISTS -> "File exists"
-            DownloadManager.ERROR_FILE_ERROR -> "File error"
-            DownloadManager.ERROR_HTTP_DATA_ERROR -> "Network error"
-            DownloadManager.ERROR_INSUFFICIENT_SPACE -> "No space"
-            DownloadManager.ERROR_TOO_MANY_REDIRECTS -> "Too many redirects"
-            DownloadManager.ERROR_UNHANDLED_HTTP_CODE -> "Server error"
-            else -> "Download failed"
+            DownloadManager.ERROR_CANNOT_RESUME -> "无法恢复"
+            DownloadManager.ERROR_DEVICE_NOT_FOUND -> "未找到存储设备"
+            DownloadManager.ERROR_FILE_ALREADY_EXISTS -> "文件已存在"
+            DownloadManager.ERROR_FILE_ERROR -> "文件错误"
+            DownloadManager.ERROR_HTTP_DATA_ERROR -> "网络错误"
+            DownloadManager.ERROR_INSUFFICIENT_SPACE -> "存储空间不足"
+            DownloadManager.ERROR_TOO_MANY_REDIRECTS -> "重定向过多"
+            DownloadManager.ERROR_UNHANDLED_HTTP_CODE -> "服务器错误"
+            else -> "下载失败"
         }
     }
 
@@ -643,7 +643,7 @@ class AppInstaller private constructor(private val context: Context) {
         } catch (e: Exception) {
             Log.e(TAG, "Uninstall error", e)
             try {
-                android.widget.Toast.makeText(context, "Uninstall failed: ${e.message}", android.widget.Toast.LENGTH_SHORT).show()
+                android.widget.Toast.makeText(context, "卸载失败: ${e.message}", android.widget.Toast.LENGTH_SHORT).show()
             } catch (ignored: Exception) {}
         }
     }
