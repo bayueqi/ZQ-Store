@@ -111,6 +111,13 @@ class HomeFragment : Fragment() {
             )
         }
 
+        // Set initial tab based on ViewModel state
+        val initialCategory = viewModel.selectedCategory.value
+        val initialTabIndex = categories.indexOf(initialCategory)
+        if (initialTabIndex >= 0) {
+            binding.tabCategories.selectTab(binding.tabCategories.getTabAt(initialTabIndex))
+        }
+
         binding.tabCategories.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {

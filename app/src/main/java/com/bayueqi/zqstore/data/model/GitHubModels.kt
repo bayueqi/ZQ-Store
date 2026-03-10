@@ -94,17 +94,14 @@ enum class AppCategory(val displayName: String, val queries: List<String>) {
     VIDEO("视频", listOf(
         "android video player stars:>50",
         "视频 stars:>30",
-        "video stars:>30",
         "topic:android-video stars:>30"
     )),
     MUSIC("音乐", listOf(
-        "android music player stars:>50",
+        "andorid music player stars:>50",
         "音乐 stars:>30",
-        "music stars:>30",
         "topic:android-music stars:>30"
     )),
     TOOLS("工具", listOf(
-        "android tools stars:>50",
         "android productivity stars:>50",
         "工具 stars:>50"
     ));
@@ -124,6 +121,13 @@ data class GitHubUser(
     val location: String?,
     val email: String?,
     val blog: String?,
+    @SerializedName("twitter_username") val twitterUsername: String?,
+    @SerializedName("public_repos") val publicRepos: Int,
+    @SerializedName("public_gists") val publicGists: Int,
+    val followers: Int,
+    val following: Int,
+    @SerializedName("created_at") val createdAt: String
+)tring?,
     @SerializedName("twitter_username") val twitterUsername: String?,
     @SerializedName("public_repos") val publicRepos: Int,
     @SerializedName("public_gists") val publicGists: Int,

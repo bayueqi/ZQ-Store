@@ -409,21 +409,33 @@ class GitHubRepository(private val repoDao: RepoDao) {
                     }
                 }
                 
-                // Use only the first query for each category, similar to getPopularAndroidApps
-                val query = category.queries.first()
-                val translatedQuery = translateQuery(query)
-                val response = api.searchRepositories(translatedQuery, perPage = 40, page = page)
+                // Use all queries for each category to get more comprehensive results
+                val allAppItems = mutableListOf<AppItem>()
+                val seenRepoIds = mutableSetOf<Long>()
+                
+                category.queries.forEach { query ->
+                    val translatedQuery = translateQuery(query)
+                    val response = api.searchRepositories(translatedQuery, perPage = 20, page = page)
+                    
+                    val appItems = filterReposWithInstallableAssets(response.items)
+                    appItems.forEach { appItem ->
+                        if (!seenRepoIds.contains(appItem.repo.id)) {
+                            seenRepoIds.add(appItem.repo.id)
+                            allAppItems.add(appItem)
+                        }
+                    }
+                }
 
-                // Filter to only repos with APK releases
-                val appItems = filterReposWithInstallableAssets(response.items)
+                // Limit to 40 items per page
+                val limitedAppItems = allAppItems.take(40)
 
-                if (appItems.isNotEmpty() && page == 1) {
-                    repoDao.insertRepos(response.items)
+                if (limitedAppItems.isNotEmpty() && page == 1) {
+                    repoDao.insertRepos(limitedAppItems.map { it.repo })
                     // Cache the results
-                    searchCache[cacheKey] = currentTime to appItems
+                    searchCache[cacheKey] = currentTime to limitedAppItems
                 }
                 
-                Result.success(appItems)
+                Result.success(limitedAppItems)
             } catch (e: HttpException) {
                 handleHttpException(e)
             } catch (e: Exception) {
