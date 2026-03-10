@@ -20,7 +20,7 @@ object RateLimitDialog {
     /**
      * Check if the error message indicates a rate limit issue
      * Matches error messages from GitHubRepository:
-     * - "Rate limit exceeded. Please wait a few minutes or add a GitHub token in settings."
+     * - "API请求频率超限。请等待几分钟或在设置中添加GitHub令牌。"
      * - "API rate limit reached. Add a GitHub token to increase limit (60 到5000 requests/hour)."
      */
     fun isRateLimitError(errorMessage: String?): Boolean {

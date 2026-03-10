@@ -626,10 +626,10 @@ class GitHubRepository(private val repoDao: RepoDao) {
 
     private fun <T> handleHttpException(e: HttpException): Result<T> {
         val message = when (e.code()) {
-            429 -> "Rate limit exceeded. Please wait a few minutes or add a GitHub token in settings."
-            403 -> "API rate limit reached. Add a GitHub token to increase limit (60 �?5000 requests/hour)."
-            404 -> "Not found"
-            500, 502, 503 -> "GitHub server error. Please try again."
+            429 -> "API请求频率超限。请等待几分钟或在设置中添加GitHub令牌。"
+            403 -> "API请求频率已达上限。添加GitHub令牌可提高限制（60 到 5000 请求/小时）。"
+            404 -> "未找到"
+            500, 502, 503 -> "GitHub服务器错误，请稍后重试。"
             else -> "Network error: ${e.message()}"
         }
         return Result.failure(Exception(message))
