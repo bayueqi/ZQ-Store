@@ -18,6 +18,24 @@ class GitHubRepository(private val repoDao: RepoDao) {
 
     private val api = RetrofitClient.api
 
+    // 中文到英文的翻译映射
+    private val keywordTranslations = mapOf(
+        "安卓" to "android",
+        "游戏" to "game",
+        "视频" to "video",
+        "音乐" to "music",
+        "工具" to "tool"
+    )
+
+    // 翻译查询字符串
+    private fun translateQuery(query: String): String {
+        var translated = query
+        keywordTranslations.forEach { (chinese, english) ->
+            translated = translated.replace(chinese, english)
+        }
+        return translated
+    }
+
     // In-memory cache
     private val releaseCache = mutableMapOf<String, GitHubRelease?>()
     private val screenshotCache = mutableMapOf<String, List<String>>()
@@ -174,7 +192,8 @@ class GitHubRepository(private val repoDao: RepoDao) {
             }
 
             // Search in name, description, and readme
-            val searchQuery = "$query in:name,description topic:android"
+            val translatedQuery = translateQuery(query)
+            val searchQuery = "$translatedQuery in:name,description topic:android"
 //            val searchQuery = "$query in:name,description,readme"
             val response = api.searchRepositories(searchQuery, perPage = 40, page = page)
 
@@ -392,7 +411,8 @@ class GitHubRepository(private val repoDao: RepoDao) {
                 
                 // Use only the first query for each category, similar to getPopularAndroidApps
                 val query = category.queries.first()
-                val response = api.searchRepositories(query, perPage = 40, page = page)
+                val translatedQuery = translateQuery(query)
+                val response = api.searchRepositories(translatedQuery, perPage = 40, page = page)
 
                 // Filter to only repos with APK releases
                 val appItems = filterReposWithInstallableAssets(response.items)

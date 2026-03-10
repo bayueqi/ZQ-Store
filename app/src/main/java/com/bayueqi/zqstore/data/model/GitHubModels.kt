@@ -83,26 +83,27 @@ enum class AppTag {
 
 enum class AppCategory(val displayName: String, val queries: List<String>) {
     ALL("推荐", listOf(
-        "安卓 topic:android stars:>50",
         "android app topic:android stars:>100",
-        "android application topic:android stars:>50"
+        "android application topic:android stars:>50",
+        "android open source stars:>100"
     )),
     GAMES("游戏", listOf(
-        "游戏 stars:>50",
-        "android game stars:>50"
+        "android game stars:>50",
+        "topic:android-game stars:>30"
     )),
     VIDEO("视频", listOf(
-        "视频 stars:>50",
-        "番剧 stars:>50",
-        "android video player stars:>50"
+        "android video player stars:>50",
+        "视频 stars:>30",
+        "topic:android-video stars:>30"
     )),
     MUSIC("音乐", listOf(
-        "音乐 stars:>50",
-        "android music player stars:>50"
+        "andorid music player stars:>50",
+        "音乐 stars:>30",
+        "topic:android-music stars:>30"
     )),
     TOOLS("工具", listOf(
-        "工具 stars:>50",
-        "android tools stars:>50"
+        "android productivity stars:>50",
+        "工具 stars:>50"
     ));
 
     // For backward compatibility
@@ -127,5 +128,3 @@ data class GitHubUser(
     val following: Int,
     @SerializedName("created_at") val createdAt: String
 )
-
-

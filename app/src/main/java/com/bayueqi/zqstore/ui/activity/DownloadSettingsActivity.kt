@@ -46,6 +46,11 @@ class DownloadSettingsActivity : AppCompatActivity() {
     private fun setupMirrorProxySection() {
         // Mirror proxy toggle
         binding.switchMirrorProxy.setOnCheckedChangeListener { _, isChecked ->
+            // Check if there's an ongoing download
+            val appInstaller = com.bayueqi.zqstore.util.AppInstaller.getInstance(this)
+            // Cancel any ongoing download when mirror proxy setting changes
+            appInstaller.cancel()
+            
             DownloadPreferences.setMirrorProxyEnabled(this, isChecked)
             binding.tilProxyUrl.isEnabled = isChecked
             binding.chipGroupProxies.isEnabled = isChecked
@@ -66,8 +71,17 @@ class DownloadSettingsActivity : AppCompatActivity() {
                     }
                     // Ensure URL ends with /
                     val finalUrl = if (normalizedUrl.endsWith("/")) normalizedUrl else "$normalizedUrl/"
+                    
+                    // Cancel any ongoing download when proxy URL changes
+                    val appInstaller = com.bayueqi.zqstore.util.AppInstaller.getInstance(this@DownloadSettingsActivity)
+                    appInstaller.cancel()
+                    
                     DownloadPreferences.setMirrorProxyUrl(this@DownloadSettingsActivity, finalUrl)
                 } else {
+                    // Cancel any ongoing download when proxy URL is cleared
+                    val appInstaller = com.bayueqi.zqstore.util.AppInstaller.getInstance(this@DownloadSettingsActivity)
+                    appInstaller.cancel()
+                    
                     DownloadPreferences.setMirrorProxyUrl(this@DownloadSettingsActivity, null)
                 }
             }
@@ -75,12 +89,21 @@ class DownloadSettingsActivity : AppCompatActivity() {
         
         // Popular proxy chips
         binding.chipGhproxy.setOnClickListener {
+            // Cancel any ongoing download when proxy changes
+            val appInstaller = com.bayueqi.zqstore.util.AppInstaller.getInstance(this)
+            appInstaller.cancel()
             binding.etProxyUrl.setText("https://gh-proxy.com/")
         }
         binding.chipGhproxyNet.setOnClickListener {
+            // Cancel any ongoing download when proxy changes
+            val appInstaller = com.bayueqi.zqstore.util.AppInstaller.getInstance(this)
+            appInstaller.cancel()
             binding.etProxyUrl.setText("https://ghproxy.net/")
         }
         binding.chipMirrorGhproxy.setOnClickListener {
+            // Cancel any ongoing download when proxy changes
+            val appInstaller = com.bayueqi.zqstore.util.AppInstaller.getInstance(this)
+            appInstaller.cancel()
             binding.etProxyUrl.setText("https://mirror.ghproxy.com/")
         }
     }

@@ -459,6 +459,13 @@ class DetailActivity : AppCompatActivity() {
         // Disable button immediately
         binding.btnDownload.isEnabled = false
         binding.btnDownload.text = "0%"
+        // Show cancel button
+        binding.btnCancel.visibility = View.VISIBLE
+        binding.btnCancel.setOnClickListener {
+            appInstaller.cancel()
+            // Hide cancel button
+            binding.btnCancel.visibility = View.GONE
+        }
         
         appInstaller.download(
             url = asset.downloadUrl,
@@ -473,6 +480,8 @@ class DetailActivity : AppCompatActivity() {
                     is AppInstaller.InstallState.Idle -> {
                         binding.btnDownload.isEnabled = true
                         binding.btnDownload.text = getString(R.string.install)
+                        // Hide cancel button
+                        binding.btnCancel.visibility = View.GONE
                     }
                     is AppInstaller.InstallState.Downloading -> {
                         binding.btnDownload.isEnabled = false
@@ -484,11 +493,15 @@ class DetailActivity : AppCompatActivity() {
                     is AppInstaller.InstallState.Success -> {
                         binding.btnDownload.isEnabled = true
                         Toast.makeText(this@DetailActivity, R.string.download_complete, Toast.LENGTH_SHORT).show()
+                        // Hide cancel button
+                        binding.btnCancel.visibility = View.GONE
                         checkInstalledState()
                     }
                     is AppInstaller.InstallState.Error -> {
                         binding.btnDownload.isEnabled = true
                         binding.btnDownload.text = getString(R.string.install)
+                        // Hide cancel button
+                        binding.btnCancel.visibility = View.GONE
                         Toast.makeText(this@DetailActivity, state.message, Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -513,6 +526,9 @@ class DetailActivity : AppCompatActivity() {
 
             Log.d(TAG, "setupInstallButton: repo='$repoName', owner='$ownerName', " +
                     "detectedPkg='$installedPackageName', isInstalled=$isInstalled")
+
+            // Hide cancel button
+            binding.btnCancel.visibility = View.GONE
 
             if (isInstalled && installedPackageName != null) {
                 // Check if update is available

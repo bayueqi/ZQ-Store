@@ -141,11 +141,39 @@ class HomeViewModel(private val repository: GitHubRepository) : ViewModel() {
     }
 
     fun refresh() {
-        loadApps(refresh = true)
+        loadedApps.clear()
+        currentPage = 1
+        isLoadingMore = false
+
+        loadJob?.cancel()
+
+        loadJob = viewModelScope.launch {
+            _uiState.value = HomeUiState.Loading
+
+            val result = if (_selectedCategory.value == AppCategory.ALL) {
+                repository.getPopularAndroidApps(currentPage)
+            } else {
+                repository.getAppsByCategory(_selectedCategory.value, currentPage)
+            }
+
+            result.fold(
+                onSuccess = { apps ->
+                    loadedApps.addAll(apps)
+                    _uiState.value = if (loadedApps.isEmpty()) {
+                        HomeUiState.Empty
+                    } else {
+                        HomeUiState.Success(loadedApps.toList())
+                    }
+                },
+                onFailure = { error ->
+                    _uiState.value = HomeUiState.Error(error.message ?: "Failed to load apps")
+                }
+            )
+        }
     }
 
     fun retry() {
-        loadApps(refresh = true)
+        refresh()
     }
 }
 
