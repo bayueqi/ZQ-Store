@@ -54,7 +54,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
     /**
      * Check if a release has installable assets for specified platforms
      */
-    private fun hasInstallableAsset(release: GitHubRelease?, platforms: List<com.samyak.repostore.data.model.Platform> = emptyList()): Boolean {
+    private fun hasInstallableAsset(release: GitHubRelease?, platforms: List<com.bayueqi.zqstore.data.model.Platform> = emptyList()): Boolean {
         if (release == null) return false
         
         return release.assets.any { asset ->
@@ -79,7 +79,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
     /**
      * Check if repo has installable assets in latest release
      */
-    suspend fun repoHasInstallableAssets(owner: String, repoName: String, platforms: List<com.samyak.repostore.data.model.Platform> = emptyList()): Boolean {
+    suspend fun repoHasInstallableAssets(owner: String, repoName: String, platforms: List<com.bayueqi.zqstore.data.model.Platform> = emptyList()): Boolean {
         val cacheKey = if (platforms.isEmpty()) {
             "$owner/$repoName"
         } else {
@@ -106,7 +106,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
     /**
      * Filter repos to only include those with installable assets
      */
-    private suspend fun filterReposWithInstallableAssets(repos: List<GitHubRepo>, platforms: List<com.samyak.repostore.data.model.Platform> = emptyList()): List<AppItem> = coroutineScope {
+    private suspend fun filterReposWithInstallableAssets(repos: List<GitHubRepo>, platforms: List<com.bayueqi.zqstore.data.model.Platform> = emptyList()): List<AppItem> = coroutineScope {
         // Limit concurrency to avoid overwhelming the API
         val maxConcurrency = 5
         val chunks = repos.chunked(maxConcurrency)
@@ -627,7 +627,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
     private fun <T> handleHttpException(e: HttpException): Result<T> {
         val message = when (e.code()) {
             429 -> "Rate limit exceeded. Please wait a few minutes or add a GitHub token in settings."
-            403 -> "API rate limit reached. Add a GitHub token to increase limit (60 â†?5000 requests/hour)."
+            403 -> "API rate limit reached. Add a GitHub token to increase limit (60 ï¿½?5000 requests/hour)."
             404 -> "Not found"
             500, 502, 503 -> "GitHub server error. Please try again."
             else -> "Network error: ${e.message()}"
