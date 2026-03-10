@@ -50,8 +50,8 @@ class AboutFragment : Fragment() {
         }
         binding.tvAppVersion.text = getString(R.string.version_format, versionName)
 
-        // 作者信�?
-        binding.tvAuthorName.text = "八月�?
+        // 作者信�?
+        binding.tvAuthorName.text = "八月琪"
         android.util.Log.d("AboutFragment", "Author name set to: " + binding.tvAuthorName.text)
         binding.btnAuthorGithub.setOnClickListener {
             openUrl("https://github.com/bayueqi")

@@ -293,7 +293,7 @@ class SearchFragment : Fragment() {
         } else if (platforms.size == 1) {
             platforms[0].displayName
         } else {
-            "${platforms.size} 个平�?
+            "${platforms.size} 个平台"
         }
         binding.chipHasApk.isChecked = platforms.isNotEmpty()
         binding.chipHasApk.setChipIconResource(R.drawable.ic_platform)
