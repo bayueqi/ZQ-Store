@@ -2,7 +2,6 @@ package com.bayueqi.zqstore.data.api
 
 import android.content.Context
 import com.bayueqi.zqstore.data.auth.GitHubAuth
-import com.bayueqi.zqstore.data.model.ProxyConfig
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.OkHttpClient
@@ -10,9 +9,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
-import java.net.InetSocketAddress
-import java.net.Proxy
-import java.net.ProxySelector
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
@@ -28,7 +24,6 @@ object RetrofitClient {
         appContext = context.applicationContext
         cache = Cache(File(context.cacheDir, "http_cache"), CACHE_SIZE)
         githubToken = token
-        ProxyManager.initialize(context)
         rebuildClient()
     }
 
@@ -125,17 +120,6 @@ object RetrofitClient {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
-        
-        // Apply proxy settings
-        val proxyConfig = ProxyManager.getCurrentProxy()
-        when (proxyConfig) {
-            is ProxyConfig.None -> {
-                builder.proxy(Proxy.NO_PROXY)
-            }
-            is ProxyConfig.System -> {
-                builder.proxySelector(ProxySelector.getDefault())
-            }
-        }
         
         return builder.build()
     }

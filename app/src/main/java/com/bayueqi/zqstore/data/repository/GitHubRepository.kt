@@ -381,42 +381,29 @@ class GitHubRepository(private val repoDao: RepoDao) {
     suspend fun getAppsByCategory(category: AppCategory, page: Int = 1): Result<List<AppItem>> {
         return withContext(Dispatchers.IO) {
             try {
-                // Use all queries for the category to get more results
-                val seenRepoIds = mutableSetOf<Long>()
-                
-                // Try all queries for the category in parallel
-                val allAppItems = coroutineScope {
-                    val jobs = category.queries.map {
-                        async {
-                            try {
-                                val query = "$it stars:>50"
-                                val response = api.searchRepositories(query, perPage = 30, page = page)
-                                
-                                // Filter to only repos with APK releases
-                                filterReposWithInstallableAssets(response.items)
-                            } catch (e: Exception) {
-                                // Ignore individual query errors and continue with next query
-                                emptyList()
-                            }
-                        }
+                // Check cache first
+                val cacheKey = "category_${category.name}_$page"
+                val currentTime = System.currentTimeMillis()
+                searchCache[cacheKey]?.let { (timestamp, apps) ->
+                    if (currentTime - timestamp < searchCacheValidityMs) {
+                        return@withContext Result.success(apps)
                     }
-                    
-                    // Wait for all jobs to complete and collect results
-                    jobs.awaitAll().flatten()
                 }
                 
-                // Filter unique apps after all requests complete
-                val uniqueAppItems = allAppItems.filter { appItem ->
-                    seenRepoIds.add(appItem.repo.id)
+                // Use only the first query for each category, similar to getPopularAndroidApps
+                val query = category.queries.first()
+                val response = api.searchRepositories(query, perPage = 40, page = page)
+
+                // Filter to only repos with APK releases
+                val appItems = filterReposWithInstallableAssets(response.items)
+
+                if (appItems.isNotEmpty() && page == 1) {
+                    repoDao.insertRepos(response.items)
+                    // Cache the results
+                    searchCache[cacheKey] = currentTime to appItems
                 }
                 
-                // Insert all repos into database
-                if (uniqueAppItems.isNotEmpty()) {
-                    val repos = uniqueAppItems.map { it.repo }
-                    repoDao.insertRepos(repos)
-                }
-                
-                Result.success(uniqueAppItems)
+                Result.success(appItems)
             } catch (e: HttpException) {
                 handleHttpException(e)
             } catch (e: Exception) {

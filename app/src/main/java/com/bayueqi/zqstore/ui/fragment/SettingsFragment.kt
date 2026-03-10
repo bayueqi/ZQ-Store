@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.card.MaterialCardView
 import com.bayueqi.zqstore.R
-import com.bayueqi.zqstore.data.api.ProxyManager
 import com.bayueqi.zqstore.data.api.RetrofitClient
 import com.bayueqi.zqstore.data.auth.GitHubAuth
 
@@ -47,7 +46,6 @@ class SettingsFragment : Fragment() {
         setupMyAppsSection()
         setupManageAppsSection()
         setupDownloadSettingsSection()
-        setupProxySettingsSection()
     }
 
     override fun onResume() {
@@ -110,34 +108,7 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    private fun setupProxySettingsSection() {
-        // Initialize proxy type selection based on current settings
-        val currentProxy = ProxyManager.getCurrentProxy()
-        when (currentProxy) {
-            com.bayueqi.zqstore.data.model.ProxyConfig.None -> {
-                binding.proxyNone.isChecked = true
-            }
-            com.bayueqi.zqstore.data.model.ProxyConfig.System -> {
-                binding.proxySystem.isChecked = true
-            }
-        }
 
-        // Set up proxy type change listener
-        binding.proxyTypeGroup.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.proxy_none -> {
-                    ProxyManager.setNoProxy(requireContext())
-                    // Rebuild client to apply new proxy settings
-                    RetrofitClient.rebuildClient()
-                }
-                R.id.proxy_system -> {
-                    ProxyManager.setSystemProxy(requireContext())
-                    // Rebuild client to apply new proxy settings
-                    RetrofitClient.rebuildClient()
-                }
-            }
-        }
-    }
 
 
 

@@ -132,7 +132,9 @@ class HomeViewModel(private val repository: GitHubRepository) : ViewModel() {
                     }
                 },
                 onFailure = { error ->
-                    _uiState.value = HomeUiState.Error(error.message ?: "Failed to load apps")
+                    // If category load fails, show empty state instead of error
+                    // This provides a better user experience
+                    _uiState.value = HomeUiState.Empty
                 }
             )
         }
