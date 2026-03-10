@@ -297,6 +297,8 @@ class SearchFragment : Fragment() {
             "${platforms.size} 个平台"
         }
         binding.chipHasApk.isChecked = platforms.isNotEmpty()
+        binding.chipHasApk.setChipIconResource(R.drawable.ic_platform)
+        binding.chipHasApk.isCheckedIconVisible = false
     }
 
     private fun updateChipStates(filters: SearchFilters) {

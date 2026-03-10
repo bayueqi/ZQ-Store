@@ -84,10 +84,8 @@ enum class AppTag {
 enum class AppCategory(val displayName: String, val queries: List<String>) {
     ALL("推荐", listOf("android app", "topic:android")),
     GAMES("游戏", listOf("android game", "android gaming", "topic:android-game")),
-    SOCIAL("社交", listOf("android social", "android chat", "topic:android-social")),
     VIDEO("视频", listOf("android video", "android player", "topic:android-video")),
-    MUSIC("音乐", listOf("android music", "android player", "topic:android-music")),
-    ANIME("动漫", listOf("android anime", "android manga", "topic:android-anime"));
+    MUSIC("音乐", listOf("android music", "android player", "topic:android-music"));
 
 
 
