@@ -131,28 +131,6 @@ class SearchViewModel(private val repository: GitHubRepository) : ViewModel() {
 
             _uiState.value = SearchUiState.Loading
 
-            // First try local cache for instant results
-            val cachedResults = repository.searchCachedRepos(query).first()
-            if (cachedResults.isNotEmpty()) {
-                // Filter cached results to only include those with installable assets
-                val appItems = mutableListOf<AppItem>()
-                for (repo in cachedResults) {
-                    try {
-                        val hasInstallable = repository.repoHasInstallableAssets(repo.owner.login, repo.name, filters.platforms)
-                        if (hasInstallable) {
-                            val release = repository.getLatestRelease(repo.owner.login, repo.name).getOrNull()
-                            val tag = repository.determineTag(repo, release)
-                            appItems.add(AppItem(repo, release, tag))
-                        }
-                    } catch (e: Exception) {
-                        // Ignore individual repo errors
-                    }
-                }
-                if (appItems.isNotEmpty()) {
-                    _uiState.value = SearchUiState.Success(appItems)
-                }
-            }
-
             // Then fetch from API with filters
             val result = repository.advancedSearchApps(query, filters, page)
 
@@ -162,6 +140,8 @@ class SearchViewModel(private val repository: GitHubRepository) : ViewModel() {
                     _totalResults.value = searchResult.totalCount
                     
                     _uiState.value = if (searchResult.items.isEmpty()) {
+                        // If API returns no results, try local cache
+                        val cachedResults = repository.searchCachedRepos(query).first()
                         if (cachedResults.isNotEmpty()) {
                             // Filter cached results to only include those with installable assets
                             val appItems = mutableListOf<AppItem>()
@@ -190,6 +170,8 @@ class SearchViewModel(private val repository: GitHubRepository) : ViewModel() {
                     }
                 },
                 onFailure = { error ->
+                    // If API fails, try local cache
+                    val cachedResults = repository.searchCachedRepos(query).first()
                     if (cachedResults.isNotEmpty()) {
                         // Filter cached results to only include those with installable assets
                         val appItems = mutableListOf<AppItem>()

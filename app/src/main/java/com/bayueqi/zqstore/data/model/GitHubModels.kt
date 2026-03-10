@@ -83,24 +83,26 @@ enum class AppTag {
 
 enum class AppCategory(val displayName: String, val queries: List<String>) {
     ALL("推荐", listOf(
+        "安卓 topic:android stars:>50",
         "android app topic:android stars:>100",
         "android application topic:android stars:>50"
     )),
     GAMES("游戏", listOf(
-        "android game stars:>50",
-        "android gaming stars:>50"
+        "游戏 stars:>50",
+        "android game stars:>50"
     )),
     VIDEO("视频", listOf(
-        "android video player stars:>50",
-        "android media player stars:>50"
+        "视频 stars:>50",
+        "番剧 stars:>50",
+        "android video player stars:>50"
     )),
     MUSIC("音乐", listOf(
-        "android music player stars:>50",
-        "android audio player stars:>50"
+        "音乐 stars:>50",
+        "android music player stars:>50"
     )),
     TOOLS("工具", listOf(
-        "android tools stars:>50",
-        "android utility stars:>50"
+        "工具 stars:>50",
+        "android tools stars:>50"
     ));
 
     // For backward compatibility
