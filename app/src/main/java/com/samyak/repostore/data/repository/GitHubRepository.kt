@@ -23,10 +23,12 @@ class GitHubRepository(private val repoDao: RepoDao) {
     private val screenshotCache = mutableMapOf<String, List<String>>()
     private val developerReposCache = mutableMapOf<String, Pair<Long, List<AppItem>>>()
     private val installableReposCache = mutableMapOf<String, Boolean>() // Cache for repos with installable assets
+    private val searchCache = mutableMapOf<String, Pair<Long, List<AppItem>>>() // Cache for search results
     
     private var lastFetchTime = 0L
-    private val cacheValidityMs = 10 * 60 * 1000L // 10 minutes
-    private val developerCacheValidityMs = 15 * 60 * 1000L // 15 minutes
+    private val cacheValidityMs = 30 * 60 * 1000L // 30 minutes
+    private val developerCacheValidityMs = 30 * 60 * 1000L // 30 minutes
+    private val searchCacheValidityMs = 15 * 60 * 1000L // 15 minutes
 
     private val screenshotFolders = listOf(
         "screenshots", "screenshot", "images", "image", "assets",
@@ -105,23 +107,48 @@ class GitHubRepository(private val repoDao: RepoDao) {
      * Filter repos to only include those with installable assets
      */
     private suspend fun filterReposWithInstallableAssets(repos: List<GitHubRepo>, platforms: List<com.samyak.repostore.data.model.Platform> = emptyList()): List<AppItem> = coroutineScope {
-        val results = repos.map { repo ->
-            async {
-                try {
-                    val hasInstallable = repoHasInstallableAssets(repo.owner.login, repo.name, platforms)
-                    if (hasInstallable) {
-                        val release = releaseCache["${repo.owner.login}/${repo.name}"]
-                        val tag = determineTag(repo, release)
-                        AppItem(repo, release, tag)
-                    } else {
+        // Limit concurrency to avoid overwhelming the API
+        val maxConcurrency = 5
+        val chunks = repos.chunked(maxConcurrency)
+        val allResults = mutableListOf<AppItem>()
+        
+        chunks.forEach { chunk ->
+            val results = chunk.map { repo ->
+                async {
+                    try {
+                        // Check cache first
+                        val cacheKey = if (platforms.isEmpty()) {
+                            "${repo.owner.login}/${repo.name}"
+                        } else {
+                            "${repo.owner.login}/${repo.name}/${platforms.joinToString(",") { it.name }}"
+                        }
+                        
+                        // Skip if already checked and not installable
+                        if (installableReposCache.getOrDefault(cacheKey, false)) {
+                            val release = releaseCache[cacheKey]
+                            val tag = determineTag(repo, release)
+                            AppItem(repo, release, tag)
+                        } else if (installableReposCache.containsKey(cacheKey)) {
+                            null
+                        } else {
+                            val hasInstallable = repoHasInstallableAssets(repo.owner.login, repo.name, platforms)
+                            if (hasInstallable) {
+                                val release = releaseCache[cacheKey]
+                                val tag = determineTag(repo, release)
+                                AppItem(repo, release, tag)
+                            } else {
+                                null
+                            }
+                        }
+                    } catch (e: Exception) {
                         null
                     }
-                } catch (e: Exception) {
-                    null
                 }
             }
+            allResults.addAll(results.awaitAll().filterNotNull())
         }
-        results.awaitAll().filterNotNull()
+        
+        allResults
     }
 
     /**
@@ -137,6 +164,15 @@ class GitHubRepository(private val repoDao: RepoDao) {
 
     suspend fun searchApps(query: String, page: Int = 1): Result<List<AppItem>> = withContext(Dispatchers.IO) {
         try {
+            // Check cache first
+            val cacheKey = "search_$query_$page"
+            val currentTime = System.currentTimeMillis()
+            searchCache[cacheKey]?.let { (timestamp, apps) ->
+                if (currentTime - timestamp < searchCacheValidityMs) {
+                    return@withContext Result.success(apps)
+                }
+            }
+
             // Search in name, description, and readme
             val searchQuery = "$query in:name,description topic:android"
 //            val searchQuery = "$query in:name,description,readme"
@@ -147,6 +183,8 @@ class GitHubRepository(private val repoDao: RepoDao) {
 
             if (appItems.isNotEmpty()) {
                 repoDao.insertRepos(response.items)
+                // Cache the search results
+                searchCache[cacheKey] = currentTime to appItems
             }
             
             Result.success(appItems)
@@ -170,6 +208,21 @@ class GitHubRepository(private val repoDao: RepoDao) {
         page: Int = 1
     ): Result<SearchResult> = withContext(Dispatchers.IO) {
         try {
+            // Check cache first
+            val cacheKey = "advanced_search_${query}_${filters.hashCode()}_$page"
+            val currentTime = System.currentTimeMillis()
+            searchCache[cacheKey]?.let { (timestamp, apps) ->
+                if (currentTime - timestamp < searchCacheValidityMs) {
+                    return@withContext Result.success(SearchResult(
+                        items = apps,
+                        totalCount = apps.size,
+                        hasNextPage = apps.size == 40,
+                        query = query,
+                        filters = filters
+                    ))
+                }
+            }
+
             val searchQuery = filters.buildQuery(query)
             
             // For "Best Match", pass null to use GitHub's relevance-based sorting
@@ -199,6 +252,9 @@ class GitHubRepository(private val repoDao: RepoDao) {
             
             // Apply Play Store-like relevance scoring and sort
             val rankedItems = rankByRelevance(appItems, query)
+            
+            // Cache the search results
+            searchCache[cacheKey] = currentTime to rankedItems
             
             Result.success(SearchResult(
                 items = rankedItems,
@@ -326,35 +382,41 @@ class GitHubRepository(private val repoDao: RepoDao) {
         return withContext(Dispatchers.IO) {
             try {
                 // Use all queries for the category to get more results
-                val allAppItems = mutableListOf<AppItem>()
                 val seenRepoIds = mutableSetOf<Long>()
                 
-                // Try all queries for the category
-                category.queries.forEach { queryTerm ->
-                    val query = "$queryTerm stars:>50"
-                    try {
-                        val response = api.searchRepositories(query, perPage = 30, page = page)
-                        
-                        // Filter to only repos with APK releases
-                        val appItems = filterReposWithInstallableAssets(response.items)
-                        
-                        // Add only unique apps
-                        appItems.forEach { appItem ->
-                            if (!seenRepoIds.contains(appItem.repo.id)) {
-                                seenRepoIds.add(appItem.repo.id)
-                                allAppItems.add(appItem)
+                // Try all queries for the category in parallel
+                val allAppItems = coroutineScope {
+                    val jobs = category.queries.map {
+                        async {
+                            try {
+                                val query = "$it stars:>50"
+                                val response = api.searchRepositories(query, perPage = 30, page = page)
+                                
+                                // Filter to only repos with APK releases
+                                filterReposWithInstallableAssets(response.items)
+                            } catch (e: Exception) {
+                                // Ignore individual query errors and continue with next query
+                                emptyList()
                             }
                         }
-                        
-                        if (appItems.isNotEmpty()) {
-                            repoDao.insertRepos(response.items)
-                        }
-                    } catch (e: Exception) {
-                        // Ignore individual query errors and continue with next query
                     }
+                    
+                    // Wait for all jobs to complete and collect results
+                    jobs.awaitAll().flatten()
                 }
                 
-                Result.success(allAppItems)
+                // Filter unique apps after all requests complete
+                val uniqueAppItems = allAppItems.filter { appItem ->
+                    seenRepoIds.add(appItem.repo.id)
+                }
+                
+                // Insert all repos into database
+                if (uniqueAppItems.isNotEmpty()) {
+                    val repos = uniqueAppItems.map { it.repo }
+                    repoDao.insertRepos(repos)
+                }
+                
+                Result.success(uniqueAppItems)
             } catch (e: HttpException) {
                 handleHttpException(e)
             } catch (e: Exception) {
@@ -606,6 +668,7 @@ class GitHubRepository(private val repoDao: RepoDao) {
         screenshotCache.clear()
         developerReposCache.clear()
         installableReposCache.clear()
+        searchCache.clear()
         lastFetchTime = 0L
     }
 }
